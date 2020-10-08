@@ -1,0 +1,15 @@
+:root {
+  --border-color: #dbdbdb;
+  --light-text: #c9c9c9;
+  --dark-text: #383838;
+  --dark-blue: #23527f;
+  --light-blue: #B3DFFCl;
+  --component-background-color: #ffffff;
+  --background-color: #fafafa;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
