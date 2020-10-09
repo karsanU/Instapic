@@ -11,5 +11,14 @@
 html,
 body {
   margin: 0px;
-  padding: 0px;
+  padding: 0px; 
+  height: 100%;
+  width: 100%;
+}
+ 
+#containerWholeApp {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  height: 100%;
 }

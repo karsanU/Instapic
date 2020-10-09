@@ -1,13 +1,17 @@
 import React from 'react';
-import Navbar from './components/navbar'
+import Navbar from './components/navbar/navbar'
+import Feed from './components/feed/feed'
 import './App.css';
 
 function App() {
   return (
     // navbar
-    <Navbar/>  
+    <div id = 'containerWholeApp'>
+      <Navbar />
+      <Feed />
+    </div>
     // conditional rendering 
-    
+
   );
 }
 

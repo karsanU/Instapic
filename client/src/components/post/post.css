@@ -1,0 +1,41 @@
+#post-container {
+  margin-top: 40px;
+  width: 680px;
+  height: 1100px;
+  border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
+  border-radius: 2px;
+}
+
+#post-header {
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--component-background-color, white);
+  height: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#post-body {
+    background-color: royalblue;
+    height: 800px;
+    margin-bottom: 10px;
+  }
+  
+#post-header-profile {
+    height: 38px;
+    width: 38px;
+    margin: 6px 8px;
+}
+
+#post-header-profileName {
+ 
+}
+
+#post-header-MoreHorizIcon{
+    margin-left: auto;
+    margin-right: 8px;
+}
+ 
+ 
