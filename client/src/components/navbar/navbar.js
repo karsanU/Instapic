@@ -1,9 +1,8 @@
 import React from 'react'
 import './navbar.css'
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import SendIcon from '@material-ui/icons/Send';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import Home from '../icons/home';
+import Heart from '../icons/heart';
+import Avatar from '@material-ui/core/Avatar';
 
 
 function Navbar() {
@@ -13,10 +12,9 @@ function Navbar() {
                 <h1 id='appName'> InstaPic</h1>
                 <input type='text' placeholder='Search' id='search' />
                 <div id='nav-iconContainer'>
-                    <HomeRoundedIcon class='nav-icon' />
-                    <SendIcon class='nav-icon' />
-                    <FavoriteBorder class='nav-icon' />
-                    <AccountCircleRoundedIcon class='nav-icon' />
+                    <Home cssClass='nav-icon' />
+                    <Heart cssClass='nav-icon' height = {22} width = {22} />
+                    <Avatar id='navbar-profile-icon'/>
                 </div>
             </div>
         </div>

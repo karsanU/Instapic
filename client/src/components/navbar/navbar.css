@@ -1,5 +1,6 @@
 #navbar {
   flex: 0 1 auto;
+  z-index: 99 !important;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -9,7 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
+  position: fixed;
+  top: 0;
+  height: 54px;
   background-color: var(--component-background-color);
 }
 
@@ -18,7 +21,7 @@
   height: 54px;
   max-width: 975px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -37,17 +40,31 @@
   border-width: 1px;
   border-style: solid;
   border-color: var(--border-color);
-  border-radius:3.5px;
+  border-radius: 3.5px;
 }
 
 .nav-icon {
   margin: 0px;
-  height: 30px;
-  padding-right: 15px;
+  height: 22px;
+  padding-right: 22px;
+  display: flex;
+  align-items: center;
+
 }
 
 #appName {
-  padding-left: 20px;
+  height: 54px;
   width: 100%;
-  max-width: 360px;
+  max-width: 340px;
+  font-family: 'Qwigley';
+  font-size: 50px;
+  background: -webkit-linear-gradient(#485563, #29323c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0px;
+}
+
+#navbar-profile-icon {
+  height: 22px;
+  width: 22px;
 }

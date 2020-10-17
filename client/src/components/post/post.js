@@ -1,19 +1,24 @@
 import React from 'react'
-import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';import './post.css'
+import PostHeader from './postHeader/postHeader'
+import PostPicture from './postPicture/postPicture'
+import Actionbar from './actionbar/actionbar'
+import Likes from './likes/likes'
+import CommentPreview from './commentPreview/commentPreview'
+import CommentPostbox from './commentPostbox/commentPostbox'
 
+
+
+import './post.css'
 
 const Post = () => {
     return (
-        <div id='post-container'>
-            <div id='post-header'>
-                <AccountCircleRoundedIcon id='post-header-profile' />
-                <span id='post-header-profileName'> Karsan Uthayakumar </span>
-                <MoreHorizIcon  id='post-header-MoreHorizIcon'/>
-            </div>
-            <div id='post-body'>
-            </div>
-            <div id='post-footer'></div>
+        <div id='post'>
+            <PostHeader />
+            <PostPicture />
+            <Actionbar />
+            <Likes /> 
+            <CommentPreview />
+            <CommentPostbox />
         </div>
     )
 }
