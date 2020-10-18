@@ -21,9 +21,9 @@ body {
 }
 #containerWholeApp {
   display: flex;
-  flex-flow: column;
-  align-items: stretch;
+  flex-direction: column;
   height: 100%;
+
 }
 
 b{

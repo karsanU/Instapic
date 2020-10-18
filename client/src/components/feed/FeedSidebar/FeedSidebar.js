@@ -1,10 +1,12 @@
 import React from 'react'
+import SidebarProfile from './sildebarProfile/sildebarProfile'
+
 import './FeedSidebar.css'
 function FeedSidebar() {
     return (
         <div class="float-container">
             <div id='sidebar-container'>
-                test
+                <SidebarProfile />
                 <div id='sidebar-userInfo'> </div>
                 <div id='sidebar-recommendedToFollow'> </div>
             </div>

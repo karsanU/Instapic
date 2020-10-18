@@ -13,3 +13,17 @@
   max-width: 614px;
   margin: 0px !important;
 }
+
+@media only screen and (max-width: 975px) {
+  #feed {
+    width: 100%;
+    height: 100%;
+    max-width: 975px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
