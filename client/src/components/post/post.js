@@ -1,11 +1,10 @@
 import React from 'react'
 import PostHeader from './postHeader/postHeader'
 import PostPicture from './postPicture/postPicture'
-import Actionbar from './actionbar/actionbar'
+import ActionBar from './actionBar/actionBar'
 import Likes from './likes/likes'
 import CommentPreview from './commentPreview/commentPreview'
 import CommentPostbox from './commentPostbox/commentPostbox'
-
 
 
 import './post.css'
@@ -15,7 +14,7 @@ const Post = () => {
         <div id='post'>
             <PostHeader />
             <PostPicture />
-            <Actionbar />
+            <ActionBar />
             <Likes /> 
             <CommentPreview />
             <CommentPostbox />

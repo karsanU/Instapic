@@ -1,9 +1,20 @@
 #sidebar_profile {
-    width: 250px;
-    height: 56px;
+  max-width: 250px;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-left: 5px;
 }
 
-#sidebar_profile-pic{
-    height: 56px;
-    width: 56px;
+#sidebar_profile-pic {
+  height: 56px;
+  width: 56px;
+  margin-right: 12px;
+}
+
+#sidebar_profile-nameOfUser {
+  color: var(--light-text, #8e8e8e);
 }

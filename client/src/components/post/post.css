@@ -1,5 +1,5 @@
 #post {
-  width: 614px;
+  max-width: 614px;
   border-style: solid;
   border-color: var(--border-color);
   border-width: 1px;

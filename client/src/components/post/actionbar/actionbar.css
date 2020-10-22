@@ -1,11 +1,11 @@
-#actionbar {
+#actionBar {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   padding: 0 16px;
 }
 
-.actionbar-icon {
+.actionBar-icon {
   height: 40px;
   width: 40px;
   display: flex;
@@ -13,6 +13,6 @@
   align-items: center   ;
 }
 
-.actionbar-lastIcon {
+.actionBar-lastIcon {
   margin-left: auto;
 }

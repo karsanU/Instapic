@@ -1,0 +1,40 @@
+#post-options-background {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3 !important;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+
+}
+
+
+#post-options-box {
+    opacity: 1 !important;
+    background-color: var(--component-background-color, white);
+    z-index: 4 !important;
+    margin: auto;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.post-option {
+    height: 45px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    border-bottom:  1px solid var(--border-color);
+}
+
+.post-option-critical{
+    font-weight: 500;
+    color: red;
+}
+
+.post-option-end {
+    border:none;
+}
+ 

@@ -2,15 +2,15 @@ import React from 'react'
 import './sildebarProfile.css'
 import Avatar from '@material-ui/core/Avatar'
 
-function sidebar_profile() {
+function Sidebar_profile() {
     return (
         <div id = "sidebar_profile">
             <Avatar id= 'sidebar_profile-pic'/>
             <div id="sidebar_profile-info">
                <div>
-                   <span> Karxan_</span>
+                   <span> <b>Karxan_ </b></span>
                </div>
-               <div>
+               <div id="sidebar_profile-nameOfUser">
                     <span> Carson Jujubwe</span>
                </div>
             </div>
@@ -18,4 +18,4 @@ function sidebar_profile() {
     )
 }
 
-export default sidebar_profile
+export default Sidebar_profile
