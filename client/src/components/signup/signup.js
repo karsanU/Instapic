@@ -1,8 +1,9 @@
-import React from 'react'
-import './signup.css'
+import React from "react";
+import "./signup.css";
+
 function Signup() {
-    return (
-        <div class="auth-container">
+  return (
+    <div class="auth-container">
       <div>
         <div class="signup-container">
           <div class="signup-app-name">
@@ -20,13 +21,16 @@ function Signup() {
         </div>
         <div class="signup-login-option">
           <span>
-          Have an account?  &nbsp;
-            <b> <a href=""> Log in</a></b>
+            Have an account? &nbsp;
+            <b>
+              {" "}
+              <a href=""> Log in</a>
+            </b>
           </span>
         </div>
       </div>
     </div>
-    )
+  );
 }
 
-export default Signup
+export default Signup;
