@@ -1,5 +1,6 @@
 import React from "react";
 import "./signup.css";
+import { Link } from "react-router-dom";
 
 function Signup() {
   return (
@@ -24,7 +25,7 @@ function Signup() {
             Have an account? &nbsp;
             <b>
               {" "}
-              <a href=""> Log in</a>
+              <Link to="/login"> Log in</Link>
             </b>
           </span>
         </div>
