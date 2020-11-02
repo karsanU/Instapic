@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./login.css";
 
 function Login() {
@@ -20,7 +22,7 @@ function Login() {
         <div class="login-signup-option">
           <span>
             Don't have an account? &nbsp;
-            <b> <a href=""> Sign up</a></b>
+            <b> <Link to="/signup"> Sign up</Link></b>
           </span>
         </div>
       </div>
