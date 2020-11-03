@@ -8,3 +8,6 @@ const userSchema = Schema({
   userName: String,
   time: { type: Date, default: Date.now },
 });
+
+const Task = mongoose.model("User", userSchema);
+module.exports = Task;
