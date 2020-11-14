@@ -1,33 +1,33 @@
 #followSuggestions-title {
-  color: var(--light-text);
+  color         : var(--light-text);
   padding-bottom: 10px;
 }
 
 #followSuggestions-profiles {
-  display: flex;
-  font-size: 12px;
-  align-items: center;
+  display       : flex;
+  font-size     : 12px;
+  align-items   : center;
   padding-bottom: 8px;
 }
 
 #followSuggestions-profiles-avatar {
   margin-right: 12px;
 }
-#followSuggestions-profiles-avatar{
+
+#followSuggestions-profiles-avatar {
   height: 32px;
-  width:32px;
-}
-#followSuggestions-profiles-username{
+  width : 32px;
 }
 
-#followSuggestions-profiles-relation{
-   color: var(--light-text);
+#followSuggestions-profiles-relation {
+  color: var(--light-text);
 
 }
+
 #followSuggestions-profiles-follow {
-    margin-left: auto;
-    margin-right:20px;
-    color: var(--light-blue);
-    font-size: 12px;
-    font-weight: 400;
+  margin-left : auto;
+  margin-right: 20px;
+  color       : var(--light-blue);
+  font-size   : 12px;
+  font-weight : 400;
 }

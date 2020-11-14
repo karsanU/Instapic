@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import Navbar from "./components/navbar/navbar";
-import Feed from "./components/feed/feed";
-import PostOptions from "./components/post/postOptions/postOptions";
-import Profile from "./components/profile/profile";
-import Login from "./components/login/login";
-import Signup from "./components/signup/signup";
+import Navbar from "./navbar/navbar";
+import Feed from ".//feed/feed";
+import Profile from "./profile/profile";
+import Login from "./login/login";
+import Signup from "./signup/signup";
 import "./App.css";
 
 function App() {
