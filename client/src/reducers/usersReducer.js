@@ -1,6 +1,6 @@
 export default (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_USER':
+    case 'FETCH_PROFILE':
       return [...state, action.payload];
     default:
       return state;

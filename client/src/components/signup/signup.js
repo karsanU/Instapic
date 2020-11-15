@@ -13,9 +13,9 @@ function Signup() {
           <div class="signup-form">
             <form>
               <input placeholder="email" />
-              <input placeholder="password" />
+              <input placeholder="password" type="password" />
+              <input placeholder="password" type="password" />
               <input placeholder="username" />
-              <input placeholder="password" />
               <button type="submit"> Sign Up</button>
             </form>
           </div>

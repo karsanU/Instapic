@@ -1,3 +1,6 @@
-export default (login) => {
-  return null;
+export default (credentials) => {
+  return {
+    type: "ATTEMPT_LOGIN",
+    credentials,
+  };
 };
