@@ -14,7 +14,7 @@ function Login() {
           <div class="login-form">
             <form>
               <input placeholder="email" />
-              <input placeholder="password" />
+              <input placeholder="password" type="password" />
               <button type="submit"> Log In</button>
             </form>
           </div>
