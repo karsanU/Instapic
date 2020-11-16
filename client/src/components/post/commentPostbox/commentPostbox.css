@@ -5,11 +5,12 @@
   margin-top: 4px;
   padding: 0px;
   position: relative;
-  left: -0.5px;
+  left: -0.1px;
   display: flex;
   align-items: center;
   justify-content: start;
 }
+
 #commentPostbox-form {
   display: flex;
   align-items: center;

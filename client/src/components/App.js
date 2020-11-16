@@ -8,7 +8,10 @@ import Login from "./login/login";
 import Signup from "./signup/signup";
 import "./App.css";
 
+
 function App() {
+
+
   return (
     // navbar
     <BrowserRouter>
@@ -19,7 +22,7 @@ function App() {
         <Route path="/feed" component={Navbar} />
         <Route path="/feed" exact component={Feed} />
         <Route path="/user" component={Navbar} />
-        <Route path="/user" exact component={Profile} />
+        <Route path="/user" exact component={Profile}  />
       </div>
     </BrowserRouter>
   );

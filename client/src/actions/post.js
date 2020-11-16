@@ -4,6 +4,7 @@ export const FetchPost = (postId) => {
         postId,
     }
 }
+
 export const clickLike = (postID) => {
   return {
     type: "CLICK_LIKE",
