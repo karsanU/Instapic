@@ -2,13 +2,28 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import App from "./components/App";
 import reducers from "./reducers";
 
-// setup redux store
-const reduxStore = createStore(reducers);
+// set the persisted data is there is any
+const persistedState = localStorage.getItem("reduxState")
+  ? JSON.parse(localStorage.getItem("reduxState"))
+  : {};
+// setup redux store with redux-thunk
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
+const reduxStore = createStore(reducers, persistedState, composedEnhancer);
+
+// save the userAuth info to the local storage
+reduxStore.subscribe(() => {
+  // persist  state
+  localStorage.setItem("reduxState", JSON.stringify(reduxStore.getState()));
+});
+
+export default reduxStore;
 
 ReactDOM.render(
   <React.StrictMode>

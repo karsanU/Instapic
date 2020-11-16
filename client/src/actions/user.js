@@ -11,3 +11,4 @@ export const fetchProfile = (username) => {
     username,
   };
 };
+
