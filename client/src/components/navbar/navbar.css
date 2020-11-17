@@ -1,71 +1,160 @@
 #navbar {
-  flex: 0 1 auto;
-  z-index: 2 !important;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border-width: 0px 0px 1px 0px;
-  border-style: solid;
-  border-color: var(--border-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  height: 54px;
+  flex            : 0 1 auto;
+  z-index         : 2 !important;
+  width           : 100%;
+  margin          : 0;
+  padding         : 0;
+  border-width    : 0px 0px 1px 0px;
+  border-style    : solid;
+  border-color    : var(--border-color);
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  position        : fixed;
+  top             : 0;
+  height          : 54px;
   background-color: var(--component-background-color);
+  flex-direction  : column;
+  box-sizing      : border-box;
 }
 
 #navItems-container {
-  width: 100%;
-  height: 54px;
-  max-width: 940px;
-  display: flex;
+  width          : 100%;
+  height         : 54px;
+  max-width      : 940px;
+  display        : flex;
   justify-content: space-between;
-  align-items: center;
-  padding-right: 15px;
+  align-items    : center;
+  margin-right   : 15px;
 }
 
 #nav-iconContainer {
-  width: 100%;
-  height: 54px;
-  max-width: 360px;
-  display: flex;
+  width          : 100%;
+  height         : 54px;
+  max-width      : 360px;
+  display        : flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items    : center;
 }
 
 #search {
-  width: 215px;
-  height: 28px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--border-color);
+  width        : 215px;
+  height       : 28px;
+  border-width : 1px;
+  border-style : solid;
+  border-color : var(--border-color);
   border-radius: 3.5px;
 }
 
 .nav-icon {
-  margin: 0px;
-  height: 22px;
-  padding-right: 22px;
-  display: flex;
-  align-items: center;
+  cursor      : pointer;
+  margin      : 0px;
+  height      : 22px;
+  margin-right: 22px;
+  display     : flex;
+  align-items : center;
 }
 
 #appName {
-  padding-left: 15px;
-  height: 54px;
-  width: 100%;
-  max-width: 340px;
-  font-family: "Qwigley";
-  font-size: 50px;
-  background: -webkit-linear-gradient(#485563, #29323c);
+  padding-left           : 15px;
+  height                 : 54px;
+  width                  : 100%;
+  max-width              : 340px;
+  font-family            : "Qwigley";
+  font-size              : 50px;
+  background             : -webkit-linear-gradient(#485563, #29323c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0px;
+  margin                 : 0px;
 }
 
 #navbar-profile-icon {
-  height: 22px;
-  width: 22px;
+  cursor: pointer;
+
+  height       : 22px;
+  width        : 22px;
+  padding-right: 0px;
+}
+
+.navbar-profile-options-container {
+  width          : 100%;
+  max-width      : 955px;
+  display        : flex;
+  justify-content: flex-end;
+}
+
+.navbar-profile-option {
+  position       : absolute;
+  top            : 52px;
+  width          : 200px;
+  background     : var(--component-background-color);
+  border-radius  : 10px;
+  box-shadow     : 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : center;
+}
+
+.navbar-profile-option div {
+  z-index        : 4 !important;
+  cursor         : pointer;
+  height         : 40px;
+  width          : 100%;
+  background     : var(--component-background-color);
+  display        : flex;
+  justify-content: flex-start;
+  align-items    : center;
+  padding        : 0px 10px;
+  box-sizing     : border-box;
+
+}
+
+.navbar-profile-option div:hover {
+  background-color: #f0f0f0b6;
+}
+
+.navbar-profile-option-profile-background {
+  padding      : 0px !important;
+  margin       : 0px;
+  width        : 100%;
+  border-radius: 10px 10px 0px 0px;
+  z-index      : 5 !important;
+}
+
+.navbar-profile-option-profile {
+  border-radius: 10px 10px 0px 0px;
+  z-index      : 5 !important;
+}
+
+.navbar-profile-option-logout {
+  border-top   : 1px solid var(--border-color);
+  border-radius: 0px 0px 10px 10px;
+}
+
+.navbar-profile-option-triangle {
+  position          : absolute;
+  top               : 46.5px;
+  margin-right      : 18px;
+  height            : 10px;
+  width             : 10px;
+  background        : #fff;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
+  box-shadow        : 0 0 5px 1px rgba(0, 0, 0, .0975);
+  -webkit-box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), .0975);
+  box-shadow        : 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), .0975);
+  border            : 1px solid rgba(var(--f23, 255, 255, 255), 1);
+  transform         : rotate(45deg);
+  z-index           : 4 !important;
+}
+
+.profile-options-background {
+  height   : 100vh;
+  width    : 100vw;
+  z-index  : 3 !important;
+  position : fixed;
+  bottom   : 0%;
+  left     : 50%;
+  transform: translate(-50%, 0);
+  display  : flex;
 }

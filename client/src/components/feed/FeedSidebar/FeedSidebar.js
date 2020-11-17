@@ -4,7 +4,7 @@ import FollowSuggestions from './followSuggestions/followSuggestions'
 import './FeedSidebar.css'
 function FeedSidebar() {
     return (
-        <div class="float-container">
+        <div className="float-container">
             <div id='sidebar-container'>
                 <SidebarProfile />
                 <FollowSuggestions />

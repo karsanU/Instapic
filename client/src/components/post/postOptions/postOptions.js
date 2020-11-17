@@ -1,24 +1,26 @@
 import React from "react";
-import useEffect from "react";
-import "./postOptions.css" 
+import "./postOptions.css";
 
-function PostOptions() {
- 
+function PostOptions({ onClick }) {
   return (
-    <div id="post-options-background">
-      <div id="post-options-box">
-        <div class="post-option post-option-critical">
-          <span> Report</span>
-        </div>
-        <div class="post-option post-option-critical">
-          <span> Unfollow </span>
-        </div>
-        <div class="post-option">
-          <span>Go to post </span>
-        </div>
-        <div class="post-option post-option-end ">
-          <span> Cancel</span>
-        </div>
+    <div
+      id="post-options-box"
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+    >
+      <div className="post-option post-option-critical">
+        <span> Report</span>
+      </div>
+      <div className="post-option post-option-critical">
+        <span> Unfollow </span>
+      </div>
+      <div className="post-option">
+        <span>Go to post </span>
+      </div>
+      <div className="post-option post-option-end ">
+        <span> Cancel</span>
       </div>
     </div>
   );

@@ -8,22 +8,22 @@ function Header() {
         <Avatar id="profile-header-avatar" />
       </div>
       <div id="profile-header-user-info">
-        <div class="profile-header-user-username  profile-header-row ">
+        <div className="profile-header-user-username  profile-header-row ">
           <span> hamishrajiv </span>
           <button id="profile-header-user-follow">Follow</button>
         </div>
-        <div class="profile-header-user-followerInfo profile-header-row ">
-          <span class="profile-header-user-followerInfo-span">
+        <div className="profile-header-user-followerInfo profile-header-row ">
+          <span className="profile-header-user-followerInfo-span">
             <b> 7 </b> posts
           </span>
-          <span class="profile-header-user-followerInfo-span">
+          <span className="profile-header-user-followerInfo-span">
             <b> 100 </b> followers
           </span>
-          <span class="profile-header-user-followerInfo-span">
+          <span className="profile-header-user-followerInfo-span">
             <b> 100</b> following
           </span>
         </div>
-        <div class="profile-header-user-nameAndBio">
+        <div className="profile-header-user-nameAndBio">
           <div>
             <span>
               <b>Hamish Rajiv </b>
