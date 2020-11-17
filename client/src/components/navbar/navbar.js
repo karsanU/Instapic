@@ -4,10 +4,10 @@ import "./navbar.css";
 import Home from "../icons/home";
 import Heart from "../icons/heart";
 import Avatar from "@material-ui/core/Avatar";
-
+// testing commit
 function Navbar() {
   const history = useHistory();
-  // handle logout button click
+  // handle logout button click 
   function handleOnClickLogout() {}
   // when the user profile button is clicked on the navbar present options
   const [profileOptions, setProfileOptions] = useState(null);
