@@ -7,9 +7,9 @@ import Comment from '../../icons/comment';
 function actionBar() {
     return (
         <div id='actionBar' >
-            <Heart cssClass='actionBar-icon' width={25} height={25} />
-            <Comment cssClass='actionBar-icon' />
-            <Bookmark cssClass='actionBar-icon actionBar-lastIcon' />
+            <Heart cssclassName='actionBar-icon' width={25} height={25} />
+            <Comment cssclassName='actionBar-icon' />
+            <Bookmark cssclassName='actionBar-icon actionBar-lastIcon' />
         </div>
     )
 }

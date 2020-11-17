@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import validator from "email-validator";
+import server from "./../../api/server";
 import correct from "./../icons/correct.svg";
 import incorrect from "./../icons/incorrect.svg";
 import signupAction from "../../actions/signup";
@@ -16,8 +17,12 @@ const inputIsInvalid = {
   backgroundImage: `url(${incorrect})`,
 };
 
+const disabledButton = {
+  opacity: 0.3,
+};
+
 function Signup({ authStatus, signupAction }) {
-  let history = useHistory();
+  // state
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
@@ -26,11 +31,15 @@ function Signup({ authStatus, signupAction }) {
   const [isUsernameValid, setIsUsernameValid] = useState(null);
   const [isNameValid, setIsNameValid] = useState(null);
   const [isPasswordValid, setIsPasswordValid] = useState(null);
+  const [allInputsAreValid, SetAllInputsAreValid] = useState(false);
 
   // if user is authenticated get directed to feed
-  if (authStatus.loggedIn) {
-    history.push("/feed");
-  }
+  let history = useHistory();
+  (() => {
+    if (authStatus.loggedIn === true) {
+      history.push("/feed");
+    }
+  })();
 
   // Signup on submit helper.
   function handleSubmit(e) {
@@ -57,6 +66,14 @@ function Signup({ authStatus, signupAction }) {
   }
   function handlePasswordInputChange(e) {
     setPassword(e.target.value);
+    if (e.target.value.length >= 5) {
+      setIsPasswordValid(inputIsValid);
+    } else {
+      setIsPasswordValid(inputIsInvalid);
+    }
+    if (e.target.value === "") {
+      setIsPasswordValid(null);
+    }
   }
 
   // handle onBlur for the input fields
@@ -83,9 +100,9 @@ function Signup({ authStatus, signupAction }) {
 
   function handleUsernameInputBlur(e) {
     if (e.target.value !== "") {
-      setIsNameValid(inputIsValid);
+      setIsUsernameValid(inputIsValid);
     } else {
-      setIsNameValid(null);
+      setIsUsernameValid(null);
     }
   }
 
@@ -99,6 +116,46 @@ function Signup({ authStatus, signupAction }) {
       setIsPasswordValid(null);
     }
   }
+  // check if the provided email and username are unique in the database
+  useEffect(() => {
+    (async function () {
+      if (isEmailValid === inputIsValid) {
+        const response = await server.get("/users/isEmailUnique/" + email);
+        if (response.data.emailExists === true) {
+          setIsEmailValid(inputIsInvalid);
+        }
+      }
+    })();
+  }, [isEmailValid, email]);
+
+  useEffect(() => {
+    (async function () {
+      if (isUsernameValid === inputIsValid) {
+        const response = await server.get(
+          "/users/isUsernameUnique/" + username
+        );
+        if (response.data.usernameExists === true) {
+          setIsUsernameValid(inputIsInvalid);
+        }
+      }
+    })();
+  }, [isUsernameValid, username]);
+
+  // use effectHook to see if the all the data is valid and the form is ready to be submitted
+  useEffect(() => {
+    if (
+      validator.validate(email) &&
+      name !== "" &&
+      username !== "" &&
+      password.length >= 5 &&
+      isUsernameValid === inputIsValid &&
+      isEmailValid === inputIsValid
+    ) {
+      SetAllInputsAreValid(true);
+    } else {
+      SetAllInputsAreValid(false);
+    }
+  }, [email, name, username, password.length, isUsernameValid, isEmailValid]);
 
   return (
     <div className="auth-container">
@@ -112,28 +169,39 @@ function Signup({ authStatus, signupAction }) {
               <input
                 placeholder="name"
                 style={isNameValid}
+                onFocus={() => setIsNameValid(null)}
                 onBlur={(e) => handleNameInputBlur(e)}
                 onChange={(e) => handleNameInputChange(e)}
               ></input>
               <input
                 placeholder="email"
                 style={isEmailValid}
+                onFocus={() => setIsEmailValid(null)}
                 onBlur={(e) => handleEmailInputBlur(e)}
                 onChange={(e) => handleEmailInputChange(e)}
               />
               <input
                 placeholder="username"
                 style={isUsernameValid}
+                onFocus={() => setIsUsernameValid(null)}
+                onBlur={(e) => handleUsernameInputBlur(e)}
                 onChange={(e) => handleUsernameInputChange(e)}
               />
               <input
                 placeholder="password"
                 type="password"
+                onFocus={() => setIsPasswordValid(null)}
                 onBlur={(e) => handlePasswordInputBlur(e)}
-                style={isPasswordValid}
                 onChange={(e) => handlePasswordInputChange(e)}
+                style={isPasswordValid}
               />
-              <button type="submit"> Sign Up</button>
+              <button
+                type="submit"
+                disabled={!allInputsAreValid}
+                style={allInputsAreValid ? {} : disabledButton}
+              >
+                Sign Up
+              </button>
             </form>
           </div>
         </div>

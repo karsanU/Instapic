@@ -1,18 +1,33 @@
-import React from 'react'
-import Post from '../post/post'
-import FeedSidebar from './FeedSidebar/FeedSidebar'
-import './feed.css'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import Post from "../post/post";
+import FeedSidebar from "./FeedSidebar/FeedSidebar";
+import "./feed.css";
 
-function Feed() {
-    return (
-        <div id="feed">
-            <div id='listOfPosts'>
-                <Post />
-                <Post />
-            </div>
-            <FeedSidebar />
-        </div>
-    )
+function Feed({ auth }) {
+  const history = useHistory();
+  (() => {
+    if (auth.loggedIn === false) {
+      history.push("/");
+    }
+  })();
+
+  return (
+    <div id="feed">
+      <div id="listOfPosts">
+        <Post />
+        <Post />
+      </div>
+      <FeedSidebar />
+    </div>
+  );
 }
 
-export default Feed
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default connect(mapStateToProps)(Feed);

@@ -1,20 +1,33 @@
 #post-header {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom   : 1px solid var(--border-color);
   background-color: var(--component-background-color, white);
-  height: 50px;
-  display: flex;
-  align-items: center;
+  height          : 50px;
+  display         : flex;
+  align-items     : center;
 }
 
 #post-header-profile {
-  height: 32px;
-  width: 32px;
-  margin: 16px 16px;
+  height      : 32px;
+  width       : 32px;
+  margin      : 16px 16px;
   margin-right: 14px;
 }
 
 
 #post-header-MoreHorizIcon {
-  margin-left: auto;
+  margin-left : auto;
   margin-right: 16px;
+}
+
+#post-options-background {
+  height          : 100vh;
+  width           : 100vw;
+  background-color: rgba(0, 0, 0, 0.198);
+  z-index         : 3 !important;
+  position        : fixed;
+  bottom          : 0%;
+  left            : 50%;
+  transform       : translate(-50%, 0);
+  display         : flex;
+
 }
