@@ -1,15 +1,11 @@
 #post {
-  max-width: 614px;
-  border-style: solid;
-  border-color: var(--border-color);
-  border-width: 1px;
-  border-radius: 2px;
-  line-height: 18px;
-  margin-bottom: 60px;
+  max-width       : 614px;
+  border-style    : solid;
+  border-color    : var(--border-color);
+  border-width    : 1px;
+  border-radius   : 2px;
+  line-height     : 18px;
+  margin-bottom   : 60px;
   background-color: var(--component-background-color);
-  padding:0px;
+  padding         : 0px;
 }
-
-
-
-  

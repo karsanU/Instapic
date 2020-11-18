@@ -80,7 +80,6 @@ function Login({ auth, loginAction }) {
           <span>
             Don't have an account? &nbsp;
             <b>
-              {" "}
               <Link to="/signup"> Sign up</Link>
             </b>
           </span>

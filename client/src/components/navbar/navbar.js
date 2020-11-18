@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import logoutAction from "../../actions/logout";
 import "./navbar.css";
 import Home from "../icons/home";
 import Heart from "../icons/heart";
 import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
+import { makeStyles } from "@material-ui/core/styles";
+
 // testing commit
-function Navbar() {
-  const history = useHistory();
-  // handle logout button click 
-  function handleOnClickLogout() {}
-  // when the user profile button is clicked on the navbar present options
+function Navbar({ auth, logoutAction }) {
   const [profileOptions, setProfileOptions] = useState(null);
+
+  const history = useHistory();
+  // handle logout button click
+  function handleOnClickLogout() {
+    logoutAction();
+  }
+  // handle image upload 
+  
+  // when the user profile button is clicked on the navbar present options
   function handleOnClickProfileOptions() {
     setProfileOptions(
       <div className="navbar-profile-options-container">
@@ -23,7 +34,7 @@ function Navbar() {
                 history.push("/user");
               }}
             >
-              profile
+              Profile
             </div>
           </div>
           <div
@@ -38,7 +49,20 @@ function Navbar() {
       </div>
     );
   }
+  // upload button style
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+    input: {
+      display: "none",
+    },
+  }));
+
+  const classes = useStyles();
   return (
     <div id="navbar">
       {profileOptions !== null ? (
@@ -51,10 +75,24 @@ function Navbar() {
       ) : null}
       <div id="navItems-container">
         <h1 id="appName">
-          <Link to="/"> InstaPic </Link>
+          <Link to="/feed"> InstaPic </Link>
         </h1>
         <input type="text" placeholder="Search" id="search" />
         <div id="nav-iconContainer">
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="icon-button-file"
+            type="file"
+            onChange={(e) => {
+              console.log(e.target.value);
+            }}
+          />
+          <label htmlFor="icon-button-file" className="nav-icon-upload-pic">
+            <IconButton aria-label="upload picture" component="span">
+              <AddAPhotoOutlinedIcon style={{ fontSize: 27 }} />
+            </IconButton>
+          </label>
           <Home cssclassName="nav-icon" />
           <Heart cssclassName="nav-icon" height={22} width={22} />
           <Avatar
@@ -70,4 +108,10 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default connect(mapStateToProps, { logoutAction })(Navbar);

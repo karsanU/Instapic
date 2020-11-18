@@ -158,3 +158,13 @@
   transform: translate(-50%, 0);
   display  : flex;
 }
+
+.nav-icon-app-post {
+  color : red;
+  height: 22px;
+  width : 22px;
+}
+
+.nav-icon-upload-pic {
+  margin-right: 10px;
+}

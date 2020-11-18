@@ -37,8 +37,7 @@ router.get("/users/isEmailUnique/:email", async (req, res) => {
 router.get("/users/isUsernameUnique/:username", async (req, res) => {
   userName = req.params.username;
   try {
-    console.log(req);
-    if ((await User.find({ userName }).exec()).length < 1) {
+     if ((await User.find({ userName }).exec()).length < 1) {
       res.status(200).send({ usernameExists: false });
     } else {
       res.status(200).send({ usernameExists: true });
@@ -55,7 +54,7 @@ router.post("/users/login", async (req, res) => {
     const user = await User.findByCredentials(
       req.body.email,
       req.body.password
-    )
+    );
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (e) {

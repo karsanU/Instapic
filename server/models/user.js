@@ -28,6 +28,10 @@ const userSchema = Schema({
     default: Date.now,
     required: true,
   },
+  posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  bio: {
+    type: String,
+  },
 });
 
 // Methods are only accessible on the instances of the model.

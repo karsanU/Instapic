@@ -1,4 +1,4 @@
-export const FetchPost = (postId) => {
+export const fetchPost = (postId) => {
     return {
         type: "FETCH_POST",
         postId,
