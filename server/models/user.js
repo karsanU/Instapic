@@ -31,6 +31,11 @@ const userSchema = Schema({
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   bio: {
     type: String,
+    default: "",
+  },
+  token: {
+    type: String,
+    default: "",
   },
 });
 

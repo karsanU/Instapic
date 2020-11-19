@@ -13,9 +13,28 @@ router.post("/users/create", async (req, res) => {
   try {
     await user.save();
     const token = await user.generateAuthToken();
+    user.token = token;
+    await user.save();
     res.status(201).send({ user, token });
   } catch (e) {
     res.status(400).send(e);
+  }
+});
+
+// Get a user's profile
+router.get("/users/fetch/:username", auth, async (req, res) => {
+  try {
+    userName = req.params.username;
+    console.log(req.params.username);
+    const user = await (await User.findOne({ userName }))
+      .populate("posts")
+      .execPopulate();
+    console.log(user.posts[1]);
+
+    res.status(201);
+  } catch (e) {
+    res.status(400).send(e);
+    console.log(e);
   }
 });
 
@@ -37,7 +56,7 @@ router.get("/users/isEmailUnique/:email", async (req, res) => {
 router.get("/users/isUsernameUnique/:username", async (req, res) => {
   userName = req.params.username;
   try {
-     if ((await User.find({ userName }).exec()).length < 1) {
+    if ((await User.find({ userName }).exec()).length < 1) {
       res.status(200).send({ usernameExists: false });
     } else {
       res.status(200).send({ usernameExists: true });
@@ -62,4 +81,5 @@ router.post("/users/login", async (req, res) => {
     res.status(400).send(e);
   }
 });
+
 module.exports = router;
