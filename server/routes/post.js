@@ -22,12 +22,12 @@ const upload = multer({
   },
 });
 
+// create a post
 router.post(
   "/posts/create",
   auth,
   upload.single("image"),
   async (req, res) => {
-    console.log(req.body, req.file);
     const buffer = await sharp(req.file.buffer).png().toBuffer();
     const post = new Post({ user: req.user });
     post.picture = buffer;
@@ -37,8 +37,22 @@ router.post(
     res.send(200);
   },
   (e, req, res, next) => {
+    console.log(e);
     res.status(400).send({ error: e.message });
   }
 );
 
+// get the img src of a file given the post _id
+router.get("/posts/picture/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post || !post.picture) {
+      throw new Error();
+    }
+    res.set("Content-Type", "image/png");
+    res.send(post.picture);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+});
 module.exports = router;

@@ -2,25 +2,34 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import logoutAction from "../../actions/logout";
-import "./navbar.css";
-import Home from "../icons/home";
-import Heart from "../icons/heart";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 import { makeStyles } from "@material-ui/core/styles";
+import Home from "../icons/home";
+import Heart from "../icons/heart";
+import Avatar from "@material-ui/core/Avatar";
+import { createPost } from "./../../actions/post";
+import "./navbar.css";
 
 // testing commit
-function Navbar({ auth, logoutAction }) {
+function Navbar({ auth, logoutAction, createPost }) {
   const [profileOptions, setProfileOptions] = useState(null);
 
   const history = useHistory();
+  (() => {
+    if (auth.loggedIn === false) {
+      history.push("/");
+    }
+  })();
   // handle logout button click
   function handleOnClickLogout() {
     logoutAction();
   }
-  // handle image upload 
-  
+  // handle image upload
+  function handleImageUpload(image) {
+    createPost(image, auth.token);
+  }
+
   // when the user profile button is clicked on the navbar present options
   function handleOnClickProfileOptions() {
     setProfileOptions(
@@ -31,7 +40,7 @@ function Navbar({ auth, logoutAction }) {
             <div
               className="navbar-profile-option-profile"
               onClick={() => {
-                history.push("/user");
+                history.push(`/user/${auth.userName}`);
               }}
             >
               Profile
@@ -85,7 +94,7 @@ function Navbar({ auth, logoutAction }) {
             id="icon-button-file"
             type="file"
             onChange={(e) => {
-              console.log(e.target.value);
+              handleImageUpload(e.target.files[0]);
             }}
           />
           <label htmlFor="icon-button-file" className="nav-icon-upload-pic">
@@ -93,7 +102,9 @@ function Navbar({ auth, logoutAction }) {
               <AddAPhotoOutlinedIcon style={{ fontSize: 27 }} />
             </IconButton>
           </label>
-          <Home cssclassName="nav-icon" />
+          <Link to="/feed">
+            <Home cssclassName="nav-icon" />
+          </Link>
           <Heart cssclassName="nav-icon" height={22} width={22} />
           <Avatar
             id="navbar-profile-icon"
@@ -114,4 +125,4 @@ const mapStateToProps = (state /*, ownProps*/) => {
   };
 };
 
-export default connect(mapStateToProps, { logoutAction })(Navbar);
+export default connect(mapStateToProps, { logoutAction, createPost })(Navbar);

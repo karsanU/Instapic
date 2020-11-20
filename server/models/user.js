@@ -37,6 +37,8 @@ const userSchema = Schema({
     type: String,
     default: "",
   },
+  followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  following: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
 // Methods are only accessible on the instances of the model.

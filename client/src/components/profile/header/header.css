@@ -1,17 +1,17 @@
 #profile-header {
-    width: 100%;
-    max-width: 920px;
-    height: 150px;
-    padding-bottom: 45px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    margin-top: 90px;
-    margin-bottom: 28px;
-    
+    width         : 100%;
+    max-width     : 920px;
+    height        : 150px;
+    padding-bottom: 25px;
+    border-bottom : 1px solid var(--border-color);
+    display       : flex;
+    margin-top    : 90px;
+    margin-bottom : 28px;
+
 }
 
 #profile-header-user-info {
-    width: 100%;
+    width      : 100%;
     margin-left: auto;
 }
 
@@ -21,7 +21,7 @@
 
 #profile-header-avatar {
     height: 140px;
-    width: 140px;
+    width : 140px;
 }
 
 .profile-header-user-username {
@@ -30,13 +30,13 @@
 }
 
 #profile-header-user-follow {
-    margin-left: 15px;
-    padding: 7px 24px;
-    font-size: 13px;
-    font-weight: 500;
-    border-radius: 4px;
-    border: none;
-    color: white;
+    margin-left     : 15px;
+    padding         : 7px 24px;
+    font-size       : 13px;
+    font-weight     : 500;
+    border-radius   : 4px;
+    border          : none;
+    color           : white;
     background-color: var(--light-blue);
 }
 
@@ -49,22 +49,45 @@
 }
 
 .profile-header-row {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
+    margin-bottom  : 20px;
+    display        : flex;
+    flex-direction : row;
     justify-content: flex-start;
-    align-items: center;
+    align-items    : center;
 }
 
 .profile-header-user-nameAndBio {
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content:flex-start;
+    font-size      : 15px;
+    display        : flex;
+    flex-direction : column;
+    align-items    : flex-start;
+    justify-content: flex-start;
 }
 
 .profile-header-user-nameAndBio p {
-    margin:0;
-    padding:0;
+    margin : 0;
+    padding: 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .profile-header-user-username {
+        font-size     : 25px;
+        display       : flex !important;
+        flex-direction: column !important;
+        align-items   : flex-start;
+    }
+
+    #profile-header-user-follow {
+        margin-left: 0px ! important;
+        margin-top : 10px ! important;
+
+    }
+
+    .profile-header-user-nameAndBio p {
+        margin : 0;
+        padding: 0;
+        display: none;
+    }
+
 }

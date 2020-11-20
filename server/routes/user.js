@@ -26,12 +26,10 @@ router.get("/users/fetch/:username", auth, async (req, res) => {
   try {
     userName = req.params.username;
     console.log(req.params.username);
-    const user = await (await User.findOne({ userName }))
-      .populate("posts")
-      .execPopulate();
-    console.log(user.posts[1]);
-
-    res.status(201);
+    const user = await await User.findOne({ userName });
+    // .populate("posts")
+    // .execPopulate();
+    res.status(200).send(user);
   } catch (e) {
     res.status(400).send(e);
     console.log(e);

@@ -1,7 +1,8 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import "./header.css";
-function Header() {
+function Header({ user, auth }) {
+  // only render when user is received
   return (
     <div id="profile-header">
       <div id="profile-header-avatar-container">
@@ -9,32 +10,27 @@ function Header() {
       </div>
       <div id="profile-header-user-info">
         <div className="profile-header-user-username  profile-header-row ">
-          <span> hamishrajiv </span>
-          <button id="profile-header-user-follow">Follow</button>
+          <span> {user.name} </span>
+          {auth.userName !== user.userName ? (
+            <button id="profile-header-user-follow">Follow</button>
+          ) : null}
         </div>
         <div className="profile-header-user-followerInfo profile-header-row ">
           <span className="profile-header-user-followerInfo-span">
-            <b> 7 </b> posts
+            <b> {user.posts.length} </b> posts
           </span>
           <span className="profile-header-user-followerInfo-span">
-            <b> 100 </b> followers
+            <b> {user.followers.length} </b> followers
           </span>
           <span className="profile-header-user-followerInfo-span">
-            <b> 100</b> following
+            <b> {user.following.length}</b> following
           </span>
         </div>
         <div className="profile-header-user-nameAndBio">
           <div>
             <span>
-              <b>Hamish Rajiv </b>
+              <b> {user.userName} </b>
             </span>
-          </div>
-          <div>
-            <p>
-              I take photos 
-              <br></br>
-              I punish bad boys
-            </p>
           </div>
         </div>
       </div>

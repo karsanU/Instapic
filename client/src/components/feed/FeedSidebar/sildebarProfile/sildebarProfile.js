@@ -10,7 +10,7 @@ function Sidebar_profile({ auth }) {
       <div id="sidebar_profile-info">
         <div>
           <span>
-            <b> {auth.username} </b>
+            <b> {auth.userName} </b>
           </span>
         </div>
         <div id="sidebar_profile-nameOfUser">
