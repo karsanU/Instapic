@@ -25,7 +25,7 @@ function PostHeader() {
         id="post-header-MoreHorizIcon"
         onClick={(e) => handleOnClick(e)}
       />
-    </div>
+     </div>
   );
 }
 

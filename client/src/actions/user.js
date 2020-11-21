@@ -1,28 +1,22 @@
 import axios from "axios";
 
-export const updateUser = (auth) => {
+export function updateUser(auth) {
   return async function (dispatch, getState) {
     try {
       const res = await axios({
         method: "get",
-        url: `http://localhost:3001/users/updatedUser`, 
+        url: `http://localhost:3001/users/updatedUser`,
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },
       });
-      console.log(res.data);
-      res.data.posts.reverse();
-      setUser(res.data);
+      const userInfo = res.data;
+      dispatch({ type: "USER_UPDATED", userInfo });
     } catch (err) {
       console.error(err);
     }
   };
-
-  // return {
-  //   type: "FETCH_PROFILE",
-  //   username,
-  // };
-};
+}
 
 export const fetchFeed = (postID) => {
   return {

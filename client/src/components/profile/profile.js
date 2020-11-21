@@ -8,8 +8,11 @@ import axios from "axios";
 
 function Profile({ auth, match }) {
   const [user, setUser] = useState(undefined);
-  console.log(match);
-  const username = match.params.id;
+  const [username, setUsername] = useState(match.params.id);
+  console.log(username);
+  if (username !== match.params.id) {
+    setUsername(match.params.id);
+  }
   // if the user is logged out got to login
   const history = useHistory();
   (() => {
@@ -20,6 +23,7 @@ function Profile({ auth, match }) {
   // get the profile
   useEffect(() => {
     (async () => {
+      console.log("getting the user");
       try {
         const res = await axios({
           method: "get",
@@ -29,21 +33,25 @@ function Profile({ auth, match }) {
           },
         });
         console.log(res.data);
-        res.data.posts.reverse();
-        setUser(res.data);
+        setUser({ ...res.data });
       } catch (err) {
         console.error(err);
       }
     })();
-  }, []);
+  }, [auth, username]);
 
   return (
-    <div id="profile-container">
+    <div key={match.params.id} id="profile-container">
       <div id="profile">
         {user === undefined ? null : (
           <>
             <Header user={user} auth={auth} />
-            <UserContent user={user} auth={auth} />
+            <UserContent
+              key={user.posts.length}
+              username={username}
+              user={user}
+              auth={auth}
+            />
           </>
         )}
       </div>

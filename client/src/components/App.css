@@ -18,12 +18,14 @@ body {
     Arial, sans-serif;
   font-size  : 13px;
   font-weight: 300;
+  overflow   : auto;
 }
 
 #containerWholeApp {
   display       : flex;
   flex-direction: column;
   height        : 100%;
+  overflow      : auto;
 
 }
 
@@ -36,6 +38,6 @@ input:focus {
 }
 
 a {
-  color: inherit;
+  color          : inherit;
   text-decoration: none;
 }

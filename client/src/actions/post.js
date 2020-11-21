@@ -25,7 +25,6 @@ export const deletePost = (postID) => {
 export const createPost = (image, token) => {
   return async function (dispatch, getState) {
     try {
-      alert("image uploaded");
       const form = new FormData();
       // we append each element to the form
       form.append("image", image);
@@ -38,10 +37,7 @@ export const createPost = (image, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      // server.post("/posts/create", { form }, config);
-      console.log(response);
-      // dispatch({ type: "USER_LOGGED_IN", userInfo });
+      return null;
     } catch (err) {
       console.error("test", err);
     }

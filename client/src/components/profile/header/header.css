@@ -1,18 +1,18 @@
 #profile-header {
     width         : 100%;
     max-width     : 920px;
-    height        : 150px;
     padding-bottom: 25px;
     border-bottom : 1px solid var(--border-color);
     display       : flex;
     margin-top    : 90px;
     margin-bottom : 28px;
+    flex-wrap     : wrap;
 
 }
 
 #profile-header-user-info {
-    width      : 100%;
-    margin-left: auto;
+    width       : 300px;
+    margin-right: auto;
 }
 
 #profile-header-avatar-container {
@@ -88,6 +88,27 @@
         margin : 0;
         padding: 0;
         display: none;
+    }
+
+}
+
+
+
+@media only screen and (max-width: 576px) {
+
+
+    #profile-header-user-info {
+        width       : 300px;
+        margin-right: auto;
+        margin-left : auto;
+
+    }
+
+    #profile-header-avatar-container {
+        padding     : 0 60px;
+        margin-right: auto;
+        margin-left : auto;
+
     }
 
 }

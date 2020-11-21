@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import "./header.css";
+import axios from "axios";
 function Header({ user, auth }) {
-  // only render when user is received
+  const [followStatus, setFollowStatus] = useState(
+    auth.following.includes(user.userName)
+  );
+
+  // handle follow
+  async function handleFollow() {
+    setFollowStatus(true);
+    try {
+      const res = await axios({
+        method: "post",
+        url: `http://localhost:3001/users/follow`,
+        data: { userName: user.userName },
+
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <div id="profile-header">
       <div id="profile-header-avatar-container">
@@ -12,7 +35,12 @@ function Header({ user, auth }) {
         <div className="profile-header-user-username  profile-header-row ">
           <span> {user.name} </span>
           {auth.userName !== user.userName ? (
-            <button id="profile-header-user-follow">Follow</button>
+            <button
+              id="profile-header-user-follow"
+              onClick={() => handleFollow()}
+            >
+              Follow
+            </button>
           ) : null}
         </div>
         <div className="profile-header-user-followerInfo profile-header-row ">

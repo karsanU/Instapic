@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import logoutAction from "../../actions/logout";
+import { updateUser } from "../../actions/user";
 import IconButton from "@material-ui/core/IconButton";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,7 +13,7 @@ import { createPost } from "./../../actions/post";
 import "./navbar.css";
 
 // testing commit
-function Navbar({ auth, logoutAction, createPost }) {
+function Navbar({ auth, logoutAction, createPost, updateUser }) {
   const [profileOptions, setProfileOptions] = useState(null);
 
   const history = useHistory();
@@ -26,8 +27,10 @@ function Navbar({ auth, logoutAction, createPost }) {
     logoutAction();
   }
   // handle image upload
-  function handleImageUpload(image) {
-    createPost(image, auth.token);
+  async function handleImageUpload(image) {
+    await createPost(image, auth.token);
+    await updateUser(auth);
+    alert("image uploaded");
   }
 
   // when the user profile button is clicked on the navbar present options
@@ -93,6 +96,7 @@ function Navbar({ auth, logoutAction, createPost }) {
             className={classes.input}
             id="icon-button-file"
             type="file"
+            value = ""
             onChange={(e) => {
               handleImageUpload(e.target.files[0]);
             }}
@@ -125,4 +129,8 @@ const mapStateToProps = (state /*, ownProps*/) => {
   };
 };
 
-export default connect(mapStateToProps, { logoutAction, createPost })(Navbar);
+export default connect(mapStateToProps, {
+  logoutAction,
+  createPost,
+  updateUser,
+})(Navbar);
