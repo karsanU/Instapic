@@ -1,10 +1,12 @@
-import React from 'react'
-import './likes.css'
+import React from "react";
+import "./likes.css";
 
-function Likes() {
-    return (
-        <p id="likes" > Liked by <b> yasmiineexo </b> and <b> 146 </b> others  </p>
-    )
+function Likes({ post }) {
+  return (
+    <p id="likes">
+      Liked by <b> {post.likes.length} </b> users 
+    </p>
+  );
 }
 
-export default Likes
+export default Likes;

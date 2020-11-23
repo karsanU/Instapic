@@ -5,7 +5,6 @@ function UserContent({ user, auth }) {
   const [photoJsx, setPhotoJsx] = useState([]);
   const totalRows = Math.ceil(user.posts.length / 3);
   // get all the photos rendered
-  console.log(user.posts.length);
   async function getPicture(id) {
     try {
       const res = await axios({

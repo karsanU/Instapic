@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Post from "../post/post";
@@ -6,18 +7,37 @@ import FeedSidebar from "./FeedSidebar/FeedSidebar";
 import "./feed.css";
 
 function Feed({ auth }) {
+  const [posts, setPosts] = useState(null);
   const history = useHistory();
-  (() => {
-    if (auth.loggedIn === false) {
-      history.push("/");
-    }
-  })();
+  if (auth.loggedIn === false) {
+    history.push("/");
+  }
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios({
+          method: "get",
+          url: `http://localhost:3001/users/feed`,
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        });
+        setPosts(res.data);
+      } catch (err) {}
+    })();
+  }, [auth.token]);
 
+  // render posts
   return (
     <div id="feed">
       <div id="listOfPosts">
-        <Post />
-        <Post />
+        {posts !== null ? (
+          posts.map((post) => (
+            <Post key={post._id} id={post._id} auth={auth}></Post>
+          ))
+        ) : (
+         null
+        )}
       </div>
       <FeedSidebar />
     </div>

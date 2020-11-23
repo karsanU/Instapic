@@ -11,7 +11,8 @@ const postSchema = Schema({
     type: Buffer,
   },
   time: { type: Date, default: Date.now },
+  likes: { type: [{ type: Schema.Types.ObjectId, ref: "User" }], unique: true },
 });
 
-const Post = mongoose.model("Post", postSchema,);
+const Post = mongoose.model("Post", postSchema);
 module.exports = Post;

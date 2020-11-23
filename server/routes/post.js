@@ -6,9 +6,7 @@ const auth = require("../middleware/auth");
 
 const router = new express.Router();
 
-// POST
 // Upload a picture
-
 const upload = multer({
   limits: {
     fileSize: 5000000,
@@ -32,7 +30,7 @@ router.post(
     const post = new Post({ user: req.user });
     post.picture = buffer;
     await post.save();
-    req.user.posts.push(post);
+    req.user.posts.unshift(post);
     await req.user.save();
     res.send(200);
   },
@@ -43,7 +41,7 @@ router.post(
 );
 
 // get the img src of a file given the post _id
-router.get("/posts/picture/:id", async (req, res) => {
+router.get("/posts/picture/:id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post || !post.picture) {
@@ -55,4 +53,45 @@ router.get("/posts/picture/:id", async (req, res) => {
     res.status(404).send(e);
   }
 });
+
+// get post
+router.get("/posts/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    post.picture = undefined;
+    res.send(post);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+});
+
+// like a post
+router.post("/posts/like", auth, async (req, res) => {
+  try {
+    const user = req.user;
+    const post = await Post.findOne({ _id: req.body._id });
+    post.likes.push(user);
+    await post.save();
+    res.status(201);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
+// unlike a post
+
+router.post("/posts/unlike", auth, async (req, res) => {
+  try {
+    const user = req.user;
+    const post = await Post.findOne({ _id: req.body._id });
+    post.likes.splice(post.likes.indexOf(auth._id), 1);
+    await post.save();
+    res.status(201);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
 module.exports = router;

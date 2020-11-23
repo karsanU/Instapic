@@ -112,3 +112,14 @@
     }
 
 }
+
+.profile-header-user-un-follow{
+    margin-left     : 15px;
+    padding         : 7px 24px;
+    font-size       : 13px;
+    font-weight     : 500;
+    border-radius   : 4px;
+    border          : none;
+    color           : white;
+    background-color: var(--light-text);
+}

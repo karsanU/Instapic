@@ -7,7 +7,6 @@ import IconButton from "@material-ui/core/IconButton";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Home from "../icons/home";
-import Heart from "../icons/heart";
 import Avatar from "@material-ui/core/Avatar";
 import { createPost } from "./../../actions/post";
 import "./navbar.css";
@@ -96,7 +95,7 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
             className={classes.input}
             id="icon-button-file"
             type="file"
-            value = ""
+            value=""
             onChange={(e) => {
               handleImageUpload(e.target.files[0]);
             }}
@@ -109,7 +108,6 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
           <Link to="/feed">
             <Home cssclassName="nav-icon" />
           </Link>
-          <Heart cssclassName="nav-icon" height={22} width={22} />
           <Avatar
             id="navbar-profile-icon"
             onClick={(e) => {

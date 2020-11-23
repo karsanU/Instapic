@@ -7,6 +7,10 @@ import UserContent from "./user-content/userContent";
 import axios from "axios";
 
 function Profile({ auth, match }) {
+  const history = useHistory();
+  if (auth.loggedIn === false) {
+    history.push("/");
+  }
   const [user, setUser] = useState(undefined);
   const [username, setUsername] = useState(match.params.id);
   console.log(username);
@@ -14,12 +18,7 @@ function Profile({ auth, match }) {
     setUsername(match.params.id);
   }
   // if the user is logged out got to login
-  const history = useHistory();
-  (() => {
-    if (auth.loggedIn === false) {
-      history.push("/");
-    }
-  })();
+
   // get the profile
   useEffect(() => {
     (async () => {
@@ -47,7 +46,7 @@ function Profile({ auth, match }) {
           <>
             <Header user={user} auth={auth} />
             <UserContent
-              key={user.posts.length}
+              key={((auth.posts)!== undefined? auth.posts.length : null) }
               username={username}
               user={user}
               auth={auth}

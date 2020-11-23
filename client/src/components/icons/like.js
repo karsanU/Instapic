@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Heart({cssclassName, height=24, width=24}) {
+function Like({cssclassName, height=24, width=24}) {
     return (
         <div className={cssclassName}>
             <svg aria-label="Like"  fill="#262626"  viewBox="0 0 48 48" eight={height}  width={width}  >
@@ -11,4 +11,4 @@ function Heart({cssclassName, height=24, width=24}) {
     )
 }
 
-export default Heart
+export default Like

@@ -15,14 +15,9 @@ function Login({ auth, loginAction }) {
 
   // if user is authenticated get directed to feed
   let history = useHistory();
-  useEffect(() => {
-    (() => {
-      if (auth.loggedIn === true) {
-        history.push("/feed");
-      }
-    })();
-  });
-
+  if (auth.loggedIn === true) {
+    history.push("/feed");
+  }
   // handle login submit
   function handleOnsubmit(e) {
     e.preventDefault();
