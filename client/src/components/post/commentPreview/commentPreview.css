@@ -1,13 +1,21 @@
 #commentPreview {
   padding: 0px 16px 0px 16px;
-  
+
 }
 
 .commentPreview-comment {
-    padding-bottom: 4px;
+  padding-bottom: 4px;
 }
 
 .commentPreview-timePosted {
   font-size: 10px;
-  color: var(--light-text, #8e8e8e);
+  color    : var(--light-text, #8e8e8e);
+}
+
+
+.commentPreview-viewAll {
+  font-size: 12px;
+  color    : var(--light-text, #8e8e8e);
+  cursor   : pointer;
+
 }

@@ -27,18 +27,22 @@ const Post = ({ id, auth }) => {
     })();
   }, []);
   return (
-    <div id="post">
+    <>
       {post !== null ? (
-        <>
+        <div id="post">
           <PostHeader />
           <PostPicture auth={auth} id={id} />
           <ActionBar post={post} auth={auth} setPost={setPost} />
           <Likes post={post} />
-          <CommentPreview />
-          <CommentPostbox />
-        </>
+          <CommentPreview
+            post={post}
+            postComments={post.comments}
+            auth={auth}
+          />
+          <CommentPostbox post={post} auth={auth} setPost={setPost} />
+        </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

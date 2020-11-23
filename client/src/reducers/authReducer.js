@@ -6,7 +6,7 @@ export default (state = initialState, action) => {
     case "USER_UPDATED":
       return { ...action.userInfo, loggedIn: true };
     case "USER_LOGGED_OUT":
-      return { loggedIn: false };
+      return { loggedIn: false, token: "", posts: [] };
     default:
       return state;
   }

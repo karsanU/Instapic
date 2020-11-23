@@ -12,6 +12,7 @@ function Feed({ auth }) {
   if (auth.loggedIn === false) {
     history.push("/");
   }
+
   useEffect(() => {
     (async () => {
       try {
@@ -25,19 +26,17 @@ function Feed({ auth }) {
         setPosts(res.data);
       } catch (err) {}
     })();
-  }, [auth.token]);
+  }, [auth.token, auth.posts.length]);
 
   // render posts
   return (
     <div id="feed">
       <div id="listOfPosts">
-        {posts !== null ? (
-          posts.map((post) => (
-            <Post key={post._id} id={post._id} auth={auth}></Post>
-          ))
-        ) : (
-         null
-        )}
+        {posts !== null
+          ? posts.map((post) => (
+              <Post key={post._id} id={post._id} auth={auth}></Post>
+            ))
+          : null}
       </div>
       <FeedSidebar />
     </div>

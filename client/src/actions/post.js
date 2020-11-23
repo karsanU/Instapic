@@ -28,7 +28,7 @@ export const createPost = (image, token) => {
       const form = new FormData();
       // we append each element to the form
       form.append("image", image);
-      const response = await axios({
+      await axios({
         method: "post",
         url: "http://localhost:3001/posts/create",
         data: form,

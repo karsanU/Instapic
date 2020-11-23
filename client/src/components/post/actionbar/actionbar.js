@@ -64,8 +64,10 @@ function ActionBar({ post, auth, setPost }) {
   return (
     <div id="actionBar">
       {renderLikeJSX()}
-      <Comment cssclassName="actionBar-icon " />
-      <Bookmark cssclassName="actionBar-icon actionBar-lastIcon" />
+      {
+        // <Comment cssclassName="actionBar-icon " />
+        // <Bookmark cssclassName="actionBar-icon actionBar-lastIcon" />
+      }
     </div>
   );
 }
