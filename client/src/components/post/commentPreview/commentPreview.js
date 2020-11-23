@@ -7,8 +7,7 @@ function CommentPreview({ postComments }) {
   );
 
   useEffect(() => {
-    console.log("hey");
-    if (comments.length < 6) {
+     if (comments.length < 6) {
       setComments(postComments.slice(Math.max(postComments.length - 5, 0)));
     }
   }, [comments.length, postComments, postComments.length]);

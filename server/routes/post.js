@@ -2,6 +2,8 @@ const express = require("express");
 const multer = require("multer");
 const sharp = require("sharp");
 const Post = require("../models/post");
+const Comment = require("../models/comment");
+
 const auth = require("../middleware/auth");
 
 const router = new express.Router();
@@ -57,7 +59,7 @@ router.get("/posts/picture/:id", auth, async (req, res) => {
 // get post
 router.get("/posts/:id", auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate("comments");
     post.picture = undefined;
     res.send(post);
   } catch (e) {
@@ -94,4 +96,26 @@ router.post("/posts/unlike", auth, async (req, res) => {
   }
 });
 
+// add a comment
+router.post("/comment/create", auth, async (req, res) => {
+  try {
+    const user = req.user;
+    const post = await Post.findOne({ _id: req.body.postId });
+    const comment = new Comment({
+      text: req.body.comment,
+      user: req.user,
+      post: post,
+      userName: req.user.userName,
+    });
+    await comment.save();
+    post.comments.push(comment);
+    await post.save();
+    res.status(201).send(await Comment.findOne({ _id: comment._id }));
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
+// delete a comment
 module.exports = router;

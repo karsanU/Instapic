@@ -23,17 +23,21 @@ const Post = ({ id, auth }) => {
           },
         });
         setPost(res.data);
-      } catch (err) {}
+      } catch (err) { }
     })();
   }, []);
+
+
   return (
     <>
       {post !== null ? (
         <div id="post">
           <PostHeader />
           <PostPicture auth={auth} id={id} />
-          <ActionBar post={post} auth={auth} setPost={setPost} />
-          <Likes post={post} />
+          <div className="post-like-container">
+            <ActionBar post={post} auth={auth} setPost={setPost} />
+            <Likes post={post} />
+            </div>
           <CommentPreview
             post={post}
             postComments={post.comments}
@@ -44,6 +48,8 @@ const Post = ({ id, auth }) => {
       ) : null}
     </>
   );
+
+
 };
 
 export default Post;

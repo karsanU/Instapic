@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+import PostPopup from './../../postPopup/postPopup'
 import axios from "axios";
 import "./userContent.css";
 function UserContent({ user, auth }) {
   const [photoJsx, setPhotoJsx] = useState([]);
+  const [postPopupJSX, setPostPopupJSX] = useState(<> </>)
   const totalRows = Math.ceil(user.posts.length / 3);
+
+  // render the pop up post 
+  function handlePostExpansion(id) {
+    setPostPopupJSX(<PostPopup id={id} auth={auth} />)
+  }
+
   // get all the photos rendered
   async function getPicture(id) {
     try {
@@ -35,7 +43,7 @@ function UserContent({ user, auth }) {
           result = (
             <div key={user.posts.length + i} className="userContent-row">
               {user.posts[i * 3 + 0] !== undefined ? (
-                <div className="userContent-item1 userContent-item">
+                <div onClick={() => handlePostExpansion(user.posts[i * 3 + 0])} className="userContent-item1 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 0])}
                     alt="postImage"
@@ -43,25 +51,25 @@ function UserContent({ user, auth }) {
                 </div>
               ) : null}
               {user.posts[i * 3 + 1] !== undefined ? (
-                <div className="userContent-item2 userContent-item">
+                <div  onClick={() => handlePostExpansion(user.posts[i * 3 + 1])} className="userContent-item2 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 1])}
                     alt="postImage"
                   ></img>
                 </div>
               ) : (
-                <div className="userContent-item2 userContent-item"></div>
-              )}
+                  <div className="userContent-item2 userContent-item"></div>
+                )}
               {user.posts[i * 3 + 2] !== undefined ? (
-                <div className="userContent-item3 userContent-item">
+                <div  onClick={() => handlePostExpansion(user.posts[i * 3 + 2])} className="userContent-item3 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 2])}
                     alt="postImage"
                   ></img>
                 </div>
               ) : (
-                <div className="userContent-item3 userContent-item"></div>
-              )}
+                  <div className="userContent-item3 userContent-item"></div>
+                )}
             </div>
           );
           setPhotoJsx((photoJsx) => [...photoJsx, result]);
@@ -74,6 +82,7 @@ function UserContent({ user, auth }) {
 
   return (
     <div className="main-userContent-row" key={user.posts.length}>
+      {postPopupJSX}
       {photoJsx}
     </div>
   );

@@ -9,3 +9,8 @@
   background-color: var(--component-background-color);
   padding         : 0px;
 }
+
+.post-like-container {
+   display: flex;
+  align-items: center;
+}

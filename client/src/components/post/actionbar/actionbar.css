@@ -1,13 +1,12 @@
 #actionBar {
   display        : flex;
-  flex-direction : row;
   justify-content: flex-start;
-  padding        : 0 16px;
+  padding        : 0 0px  0 16px ;
 }
 
 .actionBar-icon {
   height         : 40px;
-  width          : 40px;
+ 
   display        : flex;
   justify-content: center;
   align-items    : center;

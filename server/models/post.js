@@ -11,7 +11,15 @@ const postSchema = Schema({
     type: Buffer,
   },
   time: { type: Date, default: Date.now },
-  likes: { type: [{ type: Schema.Types.ObjectId, ref: "User" }], unique: true },
+  likes: { type: [{ type: Schema.Types.ObjectId, ref: "User" }] },
+  comments: {
+    type: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
+  },
+  time: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
 });
 
 const Post = mongoose.model("Post", postSchema);

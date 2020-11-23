@@ -33,14 +33,25 @@
 
 .post-popup-post-rest {
     width         : 25vw;
-    height        : 100%;
+    height        : 90vh;
     display       : flex;
     flex-direction: column;
 }
 
+.post-popup-post-rest-comments {
 
-.CommentFull {
-    padding: 10px;
-    height : 100%;
-    overflow-y: scroll;
+    flex-grow     : 100;
+    overflow-y    : auto;
+    flex-direction: column;
+    padding       : 14px 7px 0px 7px;
+
+    display: flex;
+
+
+}
+
+.post-popup-post-rest-like-container {
+    display        : flex;
+    justify-content: flex-start;
+    align-items    : center;
 }

@@ -142,8 +142,8 @@ router.get("/users/feed", auth, async (req, res) => {
       { user: { $in: user.following } },
       { _id: 1 }
     )
-      .sort({ date: -1 })
-      .limit(20);
+      .sort({ time: -1 })
+      .limit(20); // only send the last 20
     console.log(result);
     res.status(200).send(result);
   } catch (e) {
