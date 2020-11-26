@@ -40,7 +40,7 @@ function FollowerList({ auth, user, setFollowerLen, followerLen, type, setFollow
                         </Link>
                         <div>
                             <b> {fan.userName} </b>
-                            <br /> {fan.name}
+                            <br  /> {fan.name}
                         </div>
                     </div>
 
