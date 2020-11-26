@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import axios from 'axios';
 export function updateUser(auth) {
   return async function (dispatch, getState) {
     try {
@@ -11,6 +10,7 @@ export function updateUser(auth) {
         },
       });
       const userInfo = res.data;
+      delete userInfo['avatar']
       dispatch({ type: "USER_UPDATED", userInfo });
     } catch (err) {
       console.error(err);

@@ -15,7 +15,6 @@ router.post("/users/create", async (req, res) => {
     await user.save();
     const token = await user.generateAuthToken();
     user.token = token;
-    user.following.unshift(user._id);
     await user.save();
     res.status(201).send({ user, token });
   } catch (e) {
@@ -28,10 +27,23 @@ router.post("/users/create", async (req, res) => {
 router.get("/users/fetch/:username", auth, async (req, res) => {
   try {
     userName = req.params.username;
-    const user = await await User.findOne({ userName });
+    const user = await User.findOne({ userName });
     delete user["token"];
     delete user["passwords"];
     res.status(200).send(user);
+  } catch (e) {
+    res.status(400).send(e);
+    console.log(e);
+  }
+});
+
+// Get a user's basic profile information
+router.get("/users/fetch/basic/:_id", async (req, res) => {
+  try {
+    _id = req.params._id;
+    const user = await User.findOne({ _id });
+    console.log(user)
+    res.status(200).send({ name: user.name, userName: user.userName, hasAvatar: user.hasAvatar });
   } catch (e) {
     res.status(400).send(e);
     console.log(e);
@@ -139,12 +151,11 @@ router.get("/users/feed", auth, async (req, res) => {
   try {
     let user = req.user;
     const result = await Post.find(
-      { user: { $in: user.following } },
+      { user: { $in: [...user.following, user._id] } },
       { _id: 1 }
     )
       .sort({ time: -1 })
       .limit(20); // only send the last 20
-    console.log(result);
     res.status(200).send(result);
   } catch (e) {
     console.log(e);
@@ -152,4 +163,53 @@ router.get("/users/feed", auth, async (req, res) => {
   }
 });
 
+
+
+
+// Upload a picture
+const upload = multer({
+  limits: {
+    fileSize: 5000000,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      cb(new Error("Image upload file is not compatible"));
+    }
+    cb(undefined, true);
+  },
+});
+
+// create a post
+router.post(
+  "/users/avatar",
+  auth,
+  upload.single("image"),
+  async (req, res) => {
+    const buffer = await sharp(req.file.buffer).resize({ width: 140, height: 140 }).png().toBuffer();
+    req.user.avatar = buffer
+    req.user.hasAvatar = req.user.hasAvatar + 1
+    await req.user.save();
+    res.status(200).send();
+  },
+  (e, res) => {
+    console.log(e);
+    res.status(400).send({ error: e.message });
+  }
+);
+
+// get user's avatar, no auth required
+router.get("/users/avatar/:id/:time", async (req, res) => {
+  console.log(req.params)
+  const _id = req.params.id;
+  try {
+    const user = await User.findOne({ _id }).exec()
+    if (!user || !user.avatar) {
+      res.status(200).send({});
+    }
+    res.set("Content-Type", "image/png");
+    res.status(200).send(user.avatar);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
 module.exports = router;

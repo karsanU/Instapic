@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./commentPreview.css";
 
 function CommentPreview({ postComments }) {
@@ -7,7 +8,7 @@ function CommentPreview({ postComments }) {
   );
 
   useEffect(() => {
-     if (comments.length < 6) {
+    if (comments.length < 6) {
       setComments(postComments.slice(Math.max(postComments.length - 5, 0)));
     }
   }, [comments.length, postComments, postComments.length]);
@@ -47,7 +48,9 @@ function CommentPreview({ postComments }) {
         return (
           <div key={comment._id} className="commentPreview-comment">
             <span>
-              <b>{comment.userName} </b>
+              <Link to={`/user/${comment.userName}`}>
+                <b>{comment.userName} </b>
+              </Link>
               {comment.text}
             </span>
           </div>

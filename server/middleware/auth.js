@@ -8,9 +8,7 @@ const auth = async (req, res, next) => {
     const user = await User.findOne({ _id: decoded._id });
 
     if (!user) {
-      console.log("No user");
-
-      throw new Error();
+       throw new Error();
     }
     // send the User info to next step
     req.token = token;

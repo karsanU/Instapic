@@ -9,7 +9,7 @@ function UserContent({ user, auth }) {
 
   // render the pop up post 
   function handlePostExpansion(id) {
-    setPostPopupJSX(<PostPopup id={id} auth={auth} />)
+    setPostPopupJSX(<PostPopup id={id} auth={auth} setPostPopupJSX={setPostPopupJSX} />)
   }
 
   // get all the photos rendered
@@ -51,7 +51,7 @@ function UserContent({ user, auth }) {
                 </div>
               ) : null}
               {user.posts[i * 3 + 1] !== undefined ? (
-                <div  onClick={() => handlePostExpansion(user.posts[i * 3 + 1])} className="userContent-item2 userContent-item">
+                <div onClick={() => handlePostExpansion(user.posts[i * 3 + 1])} className="userContent-item2 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 1])}
                     alt="postImage"
@@ -61,7 +61,7 @@ function UserContent({ user, auth }) {
                   <div className="userContent-item2 userContent-item"></div>
                 )}
               {user.posts[i * 3 + 2] !== undefined ? (
-                <div  onClick={() => handlePostExpansion(user.posts[i * 3 + 2])} className="userContent-item3 userContent-item">
+                <div onClick={() => handlePostExpansion(user.posts[i * 3 + 2])} className="userContent-item3 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 2])}
                     alt="postImage"

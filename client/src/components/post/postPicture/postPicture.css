@@ -7,6 +7,19 @@
   align-items    : center;
 }
 
+#post-picture-popup {
+  width          : 45vw;
+  height         : 90vh;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+#post-picture-popup img {
+  width : 45vw;
+  height: 90vh;
+}
+
 #post-picture img {
   flex-shrink: 0;
   min-width  : 100%;

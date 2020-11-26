@@ -182,6 +182,7 @@ function Signup({ authStatus, signupAction }) {
               />
               <input
                 placeholder="username"
+                maxlength="7"
                 style={isUsernameValid}
                 onFocus={() => setIsUsernameValid(null)}
                 onBlur={(e) => handleUsernameInputBlur(e)}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./postPicture.css";
 import loading from "./../../icons/loading.svg";
-function PostPicture({ auth, id }) {
+function PostPicture({ postPopUp, auth, id }) {
   const [image, setImage] = useState();
   useEffect(() => {
     if (auth !== undefined) {
@@ -22,8 +22,12 @@ function PostPicture({ auth, id }) {
     }
   }, []);
   return (
-    <div id="post-picture">
-      {<img src={image || loading} alt="postImage"></img>}
+    <div id={postPopUp ? "post-picture-popup" : "post-picture"}>
+      {postPopUp
+        ?
+        <img src={image} alt="user's post"></img>
+        :
+        <img src={image || loading} alt="user's post"></img>}
     </div>
   );
 }

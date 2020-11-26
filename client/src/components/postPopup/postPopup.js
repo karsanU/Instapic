@@ -4,11 +4,14 @@ import "./postPopup.css";
 import PostHeader from "./../post/postHeader/postHeader";
 import ActionBar from "./../post/actionBar/actionbar";
 import Likes from "./../post/likes/likes";
+import PostPicture from "./../post/postPicture/postPicture";
 import CommentPostbox from "./../post/commentPostbox/commentPostbox";
-import CommentPreview from "./../post/commentPreview/commentPreview";
+import { TurnedIn } from "@material-ui/icons";
 
-function PostPopup({ id, auth }) {
+function PostPopup({ id, auth, setPostPopupJSX }) {
   const [post, setPost] = useState();
+  const [postPic, setPostPic] = useState();
+
 
   useEffect(() => {
     (async () => {
@@ -20,20 +23,28 @@ function PostPopup({ id, auth }) {
             Authorization: `Bearer ${auth.token}`,
           },
         });
+        console.log(res.data)
+        setPostPic(<PostPicture postPopUp={true} auth={auth} id={res.data._id}></PostPicture>)
         setPost(res.data);
       } catch (err) { }
     })();
   }, []);
 
   return (
-    <div className="post-popup-container">
-      <div className="post-popup-post-container">
-        <div className="post-popup-post-picture"></div>
-        <div className="post-popup-post-rest">
-          {post ? (
+    <div className="post-popup-container" onClick={() => {
+      setPostPopupJSX(null)
+    }}>
+
+      {post && postPic ? (
+        <div onClick={(e) => {
+          e.stopPropagation()
+        }} className="post-popup-post-container">
+          <div className="post-popup-post-picture">
+            {postPic}
+          </div>
+          <div className="post-popup-post-rest">
             <>
-              {" "}
-              <PostHeader />
+              <PostHeader post={post} />
               <div className="post-popup-post-rest-comments">
                 {post.comments.map((comment) => {
                   return (
@@ -53,9 +64,9 @@ function PostPopup({ id, auth }) {
               </div>                <CommentPostbox post={post} auth={auth} setPost={setPost} />
 
             </>
-          ) : null}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }

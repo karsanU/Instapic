@@ -13,29 +13,28 @@
 }
 
 .post-popup-post-container {
-    width           : 70vw;
-    height          : 90vh;
-    background-color: var(--component-background-color);
-    display         : flex;
-    align-items     : center;
-    justify-content : flex-start;
-
+    width          : 70vw;
+    height         : 90vh;
+    display        : flex;
+    align-items    : center;
+    justify-content: flex-start;
 }
 
 
 
 .post-popup-post-picture {
-    width           : 45vw;
-    height          : 90vh;
-    background-color: rebeccapurple;
-
+    width : 45vw;
+    height: 90vh;
 }
 
 .post-popup-post-rest {
-    width         : 25vw;
-    height        : 90vh;
-    display       : flex;
-    flex-direction: column;
+    width           : 25vw;
+    height          : 90vh;
+    display         : flex;
+    flex-direction  : column;
+    background-color: var(--component-background-color);
+
+
 }
 
 .post-popup-post-rest-comments {

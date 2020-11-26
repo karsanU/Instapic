@@ -6,6 +6,7 @@ export default function attemptSignup(credentialsInput) {
     try {
       const response = await server.post("/users/create", credentials);
       const userInfo = response.data.user;
+      delete userInfo['avatar']
       dispatch({ type: "USER_LOGGED_IN", userInfo });
     } catch (err) {
       console.error(err);

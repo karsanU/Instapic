@@ -7,6 +7,9 @@ const postSchema = Schema({
     required: true,
     ref: "User",
   },
+  userName: {
+    type: String
+  },
   picture: {
     type: Buffer,
   },

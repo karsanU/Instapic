@@ -29,16 +29,6 @@
 
 }
 
-#profile-header-user-follow {
-    margin-left     : 15px;
-    padding         : 7px 24px;
-    font-size       : 13px;
-    font-weight     : 500;
-    border-radius   : 4px;
-    border          : none;
-    color           : white;
-    background-color: var(--light-blue);
-}
 
 .profile-header-user-followerInfo {
     font-size: 15px;
@@ -78,9 +68,13 @@
         align-items   : flex-start;
     }
 
-    #profile-header-user-follow {
-        margin-left: 0px ! important;
-        margin-top : 10px ! important;
+    .profile-header-user-un-follow {
+        margin-left: 0px;
+    }
+
+
+    .profile-header-user-follow {
+        margin-left: 0px;
 
     }
 
@@ -91,6 +85,8 @@
     }
 
 }
+
+
 
 
 
@@ -113,13 +109,11 @@
 
 }
 
-.profile-header-user-un-follow{
-    margin-left     : 15px;
-    padding         : 7px 24px;
-    font-size       : 13px;
-    font-weight     : 500;
-    border-radius   : 4px;
-    border          : none;
-    color           : white;
-    background-color: var(--light-text);
+
+
+#profile-header-avatar-container img {
+    z-index      : 1;
+    border-radius: 50%;
+    height       : 140px;
+    width        : 140px;
 }

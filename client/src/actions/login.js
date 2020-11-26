@@ -8,6 +8,7 @@ export default (credentialsInput) => {
       console.log(response);
       const userInfo = response.data.user;
       console.log(userInfo);
+      delete userInfo['avatar']
       dispatch({ type: "USER_LOGGED_IN", userInfo });
     } catch (err) {
       console.error(err);

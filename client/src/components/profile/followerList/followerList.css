@@ -1,0 +1,52 @@
+.follower-list-background {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: rgba(0, 0, 0, 0.198);
+    z-index         : 3 !important;
+    position        : fixed;
+    bottom          : 0%;
+    left            : 50%;
+    transform       : translate(-50%, 0);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+}
+
+.follower-list-container {
+    background-color: var(--component-background-color);
+    height          : 400px;
+    width           : 400px;
+    border-radius   : 5%;
+}
+
+.follower-list-container-title {
+
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    height         : 40px;
+    border-bottom  : 1px solid var(--border-color);
+
+}
+
+.each-fan-container {
+    display: flex;
+    height : 35px;
+    padding: 8px 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-profile-fan {
+    height: 35px;
+    width : 35px;
+    border-radius: 50%;
+    font-size: 13px;
+}
+
+
+.each-fan-profile-pic-info{
+    display: flex;
+    align-items: center;
+}

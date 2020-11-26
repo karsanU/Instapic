@@ -28,6 +28,7 @@ function CommentPostbox({ auth, post, setPost }) {
     <div id="commentPostbox">
       <form id="commentPostbox-form" onSubmit={(e) => handleCommentInput(e)}>
         <input
+          autocomplete="off"
           value={comment}
           type="text"
           id="commentPostbox-input"

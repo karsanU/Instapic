@@ -47,12 +47,11 @@
 }
 
 .nav-icon {
-  cursor      : pointer;
-  margin      : 0px;
-  height      : 22px;
-  margin-right: 22px;
-  display     : flex;
-  align-items : center;
+  cursor     : pointer;
+  margin     : 0px;
+  height     : 22px;
+  display    : flex;
+  align-items: center;
 }
 
 #appName {
@@ -69,8 +68,7 @@
 }
 
 #navbar-profile-icon {
-  cursor: pointer;
-
+  cursor       : pointer;
   height       : 22px;
   width        : 22px;
   padding-right: 0px;
@@ -164,7 +162,12 @@
   height: 22px;
   width : 22px;
 }
+ 
 
-.nav-icon-upload-pic {
-  margin-right: 10px;
+
+.navbar-profile-picture {
+  z-index      : 1;
+  border-radius: 50%;
+  height       : 22px;
+  width        : 22px;
 }

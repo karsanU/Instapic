@@ -3,13 +3,13 @@ import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import logoutAction from "../../actions/logout";
 import { updateUser } from "../../actions/user";
-import IconButton from "@material-ui/core/IconButton";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Home from "../icons/home";
 import Avatar from "@material-ui/core/Avatar";
 import { createPost } from "./../../actions/post";
-import "./navbar.css";
+import IconButton from "@material-ui/core/IconButton";
+  import "./navbar.css";
 
 // testing commit
 function Navbar({ auth, logoutAction, createPost, updateUser }) {
@@ -28,8 +28,8 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
   // handle image upload
   async function handleImageUpload(image) {
     await createPost(image, auth.token);
-    await updateUser(auth);
     alert("image uploaded");
+    await updateUser(auth);
   }
 
   // when the user profile button is clicked on the navbar present options
@@ -100,20 +100,33 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
               handleImageUpload(e.target.files[0]);
             }}
           />
-          <label htmlFor="icon-button-file" className="nav-icon-upload-pic">
+          <label htmlFor="icon-button-file" >
             <IconButton aria-label="upload picture" component="span">
               <AddAPhotoOutlinedIcon style={{ fontSize: 27 }} />
             </IconButton>
           </label>
+
           <Link to="/feed">
-            <Home cssclassName="nav-icon" />
+            <IconButton >
+              <Home cssclassName="nav-icon" />
+            </IconButton>
           </Link>
-          <Avatar
-            id="navbar-profile-icon"
-            onClick={(e) => {
-              handleOnClickProfileOptions();
-            }}
-          ></Avatar>
+
+          <IconButton onClick={(e) => {
+            handleOnClickProfileOptions();
+          }}>
+            {auth.hasAvatar ?
+              // eslint-disable-next-line jsx-a11y/alt-text
+              <img className="navbar-profile-picture"
+                src={`http://localhost:3001/users/avatar/${auth._id}/${new Date().getTime()}`}
+              ></img>
+              : <Avatar
+                id="navbar-profile-icon"
+
+              ></Avatar>}
+          </IconButton>
+
+
         </div>
       </div>
       {profileOptions}

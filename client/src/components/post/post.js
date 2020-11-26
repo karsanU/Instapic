@@ -32,7 +32,7 @@ const Post = ({ id, auth }) => {
     <>
       {post !== null ? (
         <div id="post">
-          <PostHeader />
+          <PostHeader  post={post}  />
           <PostPicture auth={auth} id={id} />
           <div className="post-like-container">
             <ActionBar post={post} auth={auth} setPost={setPost} />

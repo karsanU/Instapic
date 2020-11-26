@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
-const validator = require("validator");
 const jwt = require("jsonwebtoken");
 
 const userSchema = Schema({
@@ -39,6 +38,13 @@ const userSchema = Schema({
   },
   followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   following: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  avatar: {
+    type: Buffer,
+  },
+  hasAvatar: {
+    type: Number,
+    default: 0,
+  },
 });
 
 // Methods are only accessible on the instances of the model.

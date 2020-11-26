@@ -4,15 +4,35 @@
   height          : 50px;
   display         : flex;
   align-items     : center;
-  width          : 100%;
+  width           : 100%;
+  position        : relative;
+}
+
+.post-header-profile-placeholder {
+  height      : 35px;
+  width       : 35px;
+  margin-left : 14px;
+  margin-right: 14px;
 
 }
 
-#post-header-profile {
-  height      : 32px;
-  width       : 32px;
-  margin      : 16px 16px;
-  margin-right: 14px;
+.post-header-profile-pic {
+  height       : 35px;
+  width        : 35px;
+  border-radius: 50%;
+  margin-left  : 14px;
+  margin-right : 14px;
+  position     : absolute;
+  z-index      : 1;
+}
+
+#post-header-profile-placeholder-avatar {
+  height: 35px;
+  width : 35px;
+}
+
+.post-header-profile-pic-hidden {
+  display: none;
 }
 
 
