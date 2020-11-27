@@ -15,7 +15,7 @@ const upload = multer({
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-       cb(new Error("Image upload file is not compatible"));
+      cb(new Error("Image upload file is not compatible"));
     }
     cb(undefined, true);
   },
@@ -30,7 +30,6 @@ router.post(
     const buffer = await sharp(req.file.buffer).png().toBuffer();
     const post = new Post({ user: req.user });
     post.picture = buffer;
-    console.log(req.user.userName)
     post.userName = req.user.userName;
     await post.save();
     req.user.posts.unshift(post);

@@ -36,7 +36,7 @@ function Header({ user = {}, auth, updateUser, setUser }) {
       form.append("image", avatar);
       await axios({
         method: "post",
-        url: `http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}}`,
+        url: `http://localhost:3001/users/avatar`,
         data: form,
         headers: {
           "Content-Type": "multipart/form-data",

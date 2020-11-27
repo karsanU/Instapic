@@ -6,7 +6,7 @@
   justify-content: flex-start;
   align-items    : center;
   padding-bottom : 20px;
-  padding-left   : 5px;
+
 }
 
 #sidebar_profile-pic {
@@ -18,6 +18,11 @@
   height       : 56px;
   width        : 56px;
   border-radius: 50%;
+
+}
+
+#sidebar_profile-info {
+  margin-left: 6px;
 }
 
 #sidebar_profile-nameOfUser {

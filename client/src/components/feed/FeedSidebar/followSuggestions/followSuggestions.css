@@ -10,9 +10,12 @@
   padding-bottom: 8px;
 }
 
-#followSuggestions-profiles-avatar {
-  margin-right: 12px;
+#followSuggestions-profiles-picture {
+  border-radius: 50%;
+  height       : 32px;
+  width        : 32px;
 }
+
 
 #followSuggestions-profiles-avatar {
   height: 32px;
@@ -22,6 +25,10 @@
 #followSuggestions-profiles-relation {
   color: var(--light-text);
 
+}
+
+#followSuggestions-profiles-info {
+  margin-left: 6px;
 }
 
 #followSuggestions-profiles-follow {

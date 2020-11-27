@@ -1,16 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
 import "./sildebarProfile.css";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+import { connect } from "react-redux";
+
 
 function Sidebar_profile({ auth }) {
   return (
     <div id="sidebar_profile">
 
       <Link to={`/user/${auth.userName}`}>
-        <IconButton  >
+        <IconButton size="small" >
           {auth.hasAvatar ?
             <img className="sidebar-profile-pic-img"
               src={`http://localhost:3001/users/avatar/${auth._id}/${new Date().getTime()}`}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import logoutAction from "../../actions/logout";
@@ -9,11 +9,14 @@ import Home from "../icons/home";
 import Avatar from "@material-ui/core/Avatar";
 import { createPost } from "./../../actions/post";
 import IconButton from "@material-ui/core/IconButton";
+import SearchBar from './../searchBar/SearchBar'
+import axios from 'axios'
 import "./navbar.css";
 
 // testing commit
 function Navbar({ auth, logoutAction, createPost, updateUser }) {
   const [profileOptions, setProfileOptions] = useState(null);
+  const [usernames, setUsernames] = useState();
 
   const history = useHistory();
   (() => {
@@ -31,6 +34,21 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
     alert("image uploaded");
     await updateUser(auth);
   }
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let usernamesTemp = await axios({
+          method: "get",
+          url: `http://localhost:3001/users/usernames`,
+        });
+        console.log(usernamesTemp.data)
+        setUsernames(usernamesTemp.data)
+      } catch (err) {
+        console.log(err)
+      }
+    })();
+  }, []);
 
   // when the user profile button is clicked on the navbar present options
   function handleOnClickProfileOptions() {
@@ -89,7 +107,7 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
         <h1 id="appName">
           <Link to="/feed"> InstaPic </Link>
         </h1>
-        <input type="text" placeholder="Search" id="search" />
+        {usernames ? <SearchBar usernames={usernames} auth={auth}></SearchBar> : null}
         <div id="nav-iconContainer">
           <input
             accept="image/*"

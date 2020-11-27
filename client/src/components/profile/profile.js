@@ -44,13 +44,12 @@ function Profile({ auth, match }) {
 
 
   return (
-    <div key={match.params.id} id="profile-container">
+    <div key={user._id} id="profile-container">
       <div id="profile">
         {contentNotHere ? null : (
           <>
             <Header user={user} auth={auth} setUser={setUser} />
             <UserContent
-              key={((auth.posts) !== undefined ? auth.posts.length : null)}
               username={username}
               user={user}
               auth={auth}

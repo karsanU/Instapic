@@ -74,9 +74,9 @@ function FollowButton({ auth, user, updateUser }) {
         updateUser(auth)
     }
     return (
-        <div >
-            {button}
-        </div>
+        <>
+            { button}
+        </>
     )
 }
 export default connect(null, {

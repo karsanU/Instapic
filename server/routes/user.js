@@ -42,7 +42,6 @@ router.get("/users/fetch/basic/:_id", async (req, res) => {
   try {
     _id = req.params._id;
     const user = await User.findOne({ _id });
-    console.log(user)
     res.status(200).send({
       name: user.name, userName: user.userName, hasAvatar: user.hasAvatar,
       followers: user.followers, following: user.following
@@ -149,7 +148,6 @@ router.post("/users/unfollow", auth, async (req, res) => {
 });
 
 // get user's feed
-
 router.get("/users/feed", auth, async (req, res) => {
   try {
     let user = req.user;
@@ -157,7 +155,7 @@ router.get("/users/feed", auth, async (req, res) => {
       { user: { $in: [...user.following, user._id] } },
       { _id: 1 }
     )
-      .sort({ time: -1 })
+      .sort({ time: 'desc' })
       .limit(20); // only send the last 20
     res.status(200).send(result);
   } catch (e) {
@@ -165,8 +163,6 @@ router.get("/users/feed", auth, async (req, res) => {
     res.status(400).send(e);
   }
 });
-
-
 
 
 // Upload a picture
@@ -202,7 +198,6 @@ router.post(
 
 // get user's avatar, no auth required
 router.get("/users/avatar/:id/:time", async (req, res) => {
-  console.log(req.params)
   const _id = req.params.id;
   try {
     const user = await User.findOne({ _id }).exec()
@@ -215,4 +210,33 @@ router.get("/users/avatar/:id/:time", async (req, res) => {
     res.status(400).send(e);
   }
 });
+
+// get a list of usernames
+router.get("/users/usernames", async (req, res) => {
+  try {
+    usernames = await User.find({}).select('userName -_id');
+    console.log(usernames)
+    res.status(200).send(usernames);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+
+
+// get a list of the last 5 user signup 
+router.get("/users/recent_signup", auth, async (req, res) => {
+  try {
+    let recentUsers = await User.find().sort({ time: 'desc' }).limit(5)
+    recentUsers = recentUsers.filter((recent) => {
+      return ((!(req.user.following.includes(recent._id)))
+        && ((String(recent._id) !== String(req.user._id))))
+    })
+    res.status(200).send(recentUsers);
+  } catch (e) {
+    console.log(e)
+    res.status(400).send(e);
+  }
+});
+
 module.exports = router;
