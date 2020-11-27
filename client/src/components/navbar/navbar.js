@@ -9,7 +9,7 @@ import Home from "../icons/home";
 import Avatar from "@material-ui/core/Avatar";
 import { createPost } from "./../../actions/post";
 import IconButton from "@material-ui/core/IconButton";
-  import "./navbar.css";
+import "./navbar.css";
 
 // testing commit
 function Navbar({ auth, logoutAction, createPost, updateUser }) {
@@ -42,6 +42,7 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
             <div
               className="navbar-profile-option-profile"
               onClick={() => {
+                setProfileOptions(null)
                 history.push(`/user/${auth.userName}`);
               }}
             >
@@ -78,7 +79,7 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
     <div id="navbar">
       {profileOptions !== null ? (
         <div
-          class="profile-options-background"
+          className="profile-options-background"
           onClick={() => {
             setProfileOptions(null);
           }}

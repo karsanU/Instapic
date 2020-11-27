@@ -41,7 +41,11 @@ a {
   color          : inherit;
   text-decoration: none;
 }
- 
+
 .pointer {
-  cursor:pointer;
+  cursor: pointer;
+}
+
+button {
+  outline: none;
 }

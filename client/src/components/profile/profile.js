@@ -11,8 +11,10 @@ function Profile({ auth, match }) {
   if (auth.loggedIn === false) {
     history.push("/");
   }
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState({ followers: [], following: [] });
+  const [contentNotHere, setContentNotHere] = useState(true);
   const [username, setUsername] = useState(match.params.id);
+
   console.log(username);
   if (username !== match.params.id) {
     setUsername(match.params.id);
@@ -33,20 +35,22 @@ function Profile({ auth, match }) {
         });
         console.log(res.data);
         setUser({ ...res.data });
+        setContentNotHere(false)
       } catch (err) {
         console.error(err);
       }
     })();
   }, [auth, username]);
 
+
   return (
     <div key={match.params.id} id="profile-container">
       <div id="profile">
-        {user === undefined ? null : (
+        {contentNotHere ? null : (
           <>
-            <Header user={user} auth={auth} />
+            <Header user={user} auth={auth} setUser={setUser} />
             <UserContent
-              key={((auth.posts)!== undefined? auth.posts.length : null) }
+              key={((auth.posts) !== undefined ? auth.posts.length : null)}
               username={username}
               user={user}
               auth={auth}

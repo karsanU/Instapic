@@ -5,7 +5,7 @@ import "./userContent.css";
 function UserContent({ user, auth }) {
   const [photoJsx, setPhotoJsx] = useState([]);
   const [postPopupJSX, setPostPopupJSX] = useState(<> </>)
-  const totalRows = Math.ceil(user.posts.length / 3);
+  const totalRows = Math.ceil((user.posts.length + 1) / 3);
 
   // render the pop up post 
   function handlePostExpansion(id) {
@@ -46,7 +46,7 @@ function UserContent({ user, auth }) {
                 <div onClick={() => handlePostExpansion(user.posts[i * 3 + 0])} className="userContent-item1 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 0])}
-                    alt="postImage"
+                    alt="post"
                   ></img>
                 </div>
               ) : null}
@@ -54,7 +54,7 @@ function UserContent({ user, auth }) {
                 <div onClick={() => handlePostExpansion(user.posts[i * 3 + 1])} className="userContent-item2 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 1])}
-                    alt="postImage"
+                    alt="post"
                   ></img>
                 </div>
               ) : (
@@ -64,7 +64,7 @@ function UserContent({ user, auth }) {
                 <div onClick={() => handlePostExpansion(user.posts[i * 3 + 2])} className="userContent-item3 userContent-item">
                   <img
                     src={await getPicture(user.posts[i * 3 + 2])}
-                    alt="postImage"
+                    alt="post"
                   ></img>
                 </div>
               ) : (

@@ -38,13 +38,16 @@
     align-items: center;
 }
 
-.sidebar-profile-fan {
+.follow-list-profile-fan {
     height: 35px;
     width : 35px;
     border-radius: 50%;
     font-size: 13px;
 }
 
+.follow-list-fan-info {
+    padding-left: 8px;
+}
 
 .each-fan-profile-pic-info{
     display: flex;

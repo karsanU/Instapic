@@ -43,7 +43,10 @@ router.get("/users/fetch/basic/:_id", async (req, res) => {
     _id = req.params._id;
     const user = await User.findOne({ _id });
     console.log(user)
-    res.status(200).send({ name: user.name, userName: user.userName, hasAvatar: user.hasAvatar });
+    res.status(200).send({
+      name: user.name, userName: user.userName, hasAvatar: user.hasAvatar,
+      followers: user.followers, following: user.following
+    });
   } catch (e) {
     res.status(400).send(e);
     console.log(e);
@@ -116,7 +119,7 @@ router.post("/users/follow", auth, async (req, res) => {
       await user.save();
       await toFollowUser.save();
     }
-    res.status(201);
+    res.status(201).send();
   } catch (e) {
     console.log(e);
     res.status(400).send(e);
@@ -138,7 +141,7 @@ router.post("/users/unfollow", auth, async (req, res) => {
       await toFollowUser.save();
     }
 
-    res.status(201);
+    res.status(201).send();
   } catch (e) {
     console.log(e);
     res.status(400).send(e);

@@ -9,9 +9,8 @@ import { connect } from "react-redux";
 import { updateUser } from "../../../actions/user";
 import FollowButton from './../../followButton/FollowButton'
 
-function Header({ user = {}, auth, updateUser }) {
+function Header({ user = {}, auth, updateUser, setUser }) {
   const [profileAvatarChange, setProfileAvatarChange] = useState(0)
-  const [followerLen, setFollowerLen] = useState(user.followers.length);
   const [followerList, setFollowerList] = useState();
 
 
@@ -37,7 +36,7 @@ function Header({ user = {}, auth, updateUser }) {
       form.append("image", avatar);
       await axios({
         method: "post",
-        url: "http://localhost:3001/users/avatar",
+        url: `http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}}`,
         data: form,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -54,11 +53,11 @@ function Header({ user = {}, auth, updateUser }) {
   const avatar = (() => {
     // user is viewing someone elses profile 
     if (auth.userName !== user.userName) {
-      if (user.avatar) {
+      if (user.hasAvatar) {
         return <>
           { // eslint-disable-next-line jsx-a11y/alt-text
             <img
-              src={`http://localhost:3001/users/avatar/${user._id}`}
+              src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}}`}
             ></img>
           }
         </>
@@ -89,7 +88,7 @@ function Header({ user = {}, auth, updateUser }) {
                   <img key={profileAvatarChange}
                     src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}`}
                   ></img> :
-                  (user.avatar) ?
+                  (user.hasAvatar) ?
                     // eslint-disable-next-line jsx-a11y/alt-text
                     <img
                       src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}`}
@@ -115,9 +114,9 @@ function Header({ user = {}, auth, updateUser }) {
         <div className="profile-header-user-username  profile-header-row ">
           <span> {user.name} </span>
           <FollowButton FollowButton auth={auth} user={user}
-            setFollowerLen={setFollowerLen}
-            followerLen={followerLen} >
-
+            fromHeader={true}
+            setUser={setUser}
+          >
           </FollowButton>
         </div>
         <div className="profile-header-user-followerInfo profile-header-row ">
@@ -128,17 +127,14 @@ function Header({ user = {}, auth, updateUser }) {
             className="profile-header-user-followerInfo-span pointer"
             onClick={() => setFollowerList(
               <FollowerList user={user} type={'followers'} auth={auth}
-                setFollowerLen={setFollowerLen}
-                followerLen={followerLen}
+
                 setFollowerList={setFollowerList} />)}
           >
-            <b> {followerLen} </b> followers
+            <b> {user.followers.length} </b> followers
           </span>
           <span className="profile-header-user-followerInfo-span pointer"
             onClick={() => setFollowerList(
               <FollowerList user={user} type={'following'} auth={auth}
-                setFollowerLen={setFollowerLen}
-                followerLen={followerLen}
                 setFollowerList={setFollowerList} />)}
           >
             <b> {user.following.length}</b> following

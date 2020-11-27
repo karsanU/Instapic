@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import FollowButton from './../../followButton/FollowButton'
 
-function FollowerList({ auth, user, setFollowerLen, followerLen, type, setFollowerList }) {
+function FollowerList({ auth, user, type, setFollowerList }) {
     const [followerListJSX, setFollowerListJSX] = useState([])
     // fetch a fans info 
     async function fetchFan(fan_id) {
@@ -26,29 +26,31 @@ function FollowerList({ auth, user, setFollowerLen, followerLen, type, setFollow
             user[type].map(async (fan_id) => {
                 const fan = (await fetchFan(fan_id)).data
                 const result = <div className="each-fan-container">
-                    <div className="each-fan-profile-pic-info">
+                    <div key={fan_id} className="each-fan-profile-pic-info">
                         <Link to={`/user/${fan.userName}`}>
-                            <IconButton  >
+                            <IconButton size="small">
                                 {fan.hasAvatar ?
-                                    <img className="sidebar-profile-fan"
+                                    <img className="follow-list-profile-fan"
                                         src={`http://localhost:3001/users/avatar/${fan_id}/${new Date().getTime()}`}
-                                        alt="feed-sidebar-profile-img"
+                                        alt="feed-follow-list-profile-img"
                                     ></img>
-                                    : <Avatar id="sidebar-profile-fan-default" />
+                                    : <Avatar id="follow-list-profile-fan-default" />
                                 }
                             </IconButton>
                         </Link>
-                        <div>
-                            <b> {fan.userName} </b>
-                            <br  /> {fan.name}
+                        <div className="follow-list-fan-info">
+                            <Link to={`/user/${fan.userName}`}>
+
+                                <b> {fan.userName} </b>
+                                <br /> {fan.name}
+                            </Link>
                         </div>
                     </div>
 
                     <div>
-                        <FollowButton FollowButton auth={auth} user={user}
-                            setFollowerLen={setFollowerLen}
-                            followerLen={followerLen} >
-                        </FollowButton>
+                        {fan_id !== auth._id ? <FollowButton FollowButton auth={auth} user={fan}
+                        >
+                        </FollowButton> : null}
                     </div>
                 </div>
                 setFollowerListJSX((followerListJSX) => [...followerListJSX, result])
@@ -59,7 +61,9 @@ function FollowerList({ auth, user, setFollowerLen, followerLen, type, setFollow
 
     return (
         <div className="follower-list-background" onClick={() => setFollowerList(null)}>
-            <div className="follower-list-container">
+            <div className="follower-list-container" onClick={(e) => {
+                e.stopPropagation()
+            }} >
                 <div className="follower-list-container-title">
                     <b> {type === "following" ? "Following" : "Followers"}</b>
                 </div>

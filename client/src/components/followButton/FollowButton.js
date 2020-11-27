@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { connect } from "react-redux";
 import axios from 'axios'
 import './followButton.css'
+import { updateUser } from "../../actions/user";
 
-function FollowButton({ auth, user, setFollowerLen, followerLen }) {
+function FollowButton({ auth, user, updateUser }) {
     const [followStatus, setFollowStatus] = useState(
         user.followers.includes(auth._id)
-    ); 
+    );
+
     // follow button render logic
     const button = (() => {
         if (auth.userName !== user.userName) {
@@ -35,7 +38,6 @@ function FollowButton({ auth, user, setFollowerLen, followerLen }) {
 
     // handle follow
     async function handleFollow() {
-        setFollowerLen(followerLen + 1);
         setFollowStatus(true);
         try {
             await axios({
@@ -46,13 +48,15 @@ function FollowButton({ auth, user, setFollowerLen, followerLen }) {
                     Authorization: `Bearer ${auth.token}`,
                 },
             });
+
         } catch (err) {
             console.error(err);
         }
+        updateUser(auth)
     }
     // handle Unfollow
     async function handleUnfollow() {
-        setFollowerLen(followerLen - 1);
+
         setFollowStatus(false);
         try {
             await axios({
@@ -63,9 +67,11 @@ function FollowButton({ auth, user, setFollowerLen, followerLen }) {
                     Authorization: `Bearer ${auth.token}`,
                 },
             });
+
         } catch (err) {
             console.error(err);
         }
+        updateUser(auth)
     }
     return (
         <div >
@@ -73,5 +79,6 @@ function FollowButton({ auth, user, setFollowerLen, followerLen }) {
         </div>
     )
 }
-
-export default FollowButton
+export default connect(null, {
+    updateUser,
+})(FollowButton);
