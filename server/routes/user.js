@@ -215,7 +215,6 @@ router.get("/users/avatar/:id/:time", async (req, res) => {
 router.get("/users/usernames", async (req, res) => {
   try {
     usernames = await User.find({}).select('userName -_id');
-    console.log(usernames)
     res.status(200).send(usernames);
   } catch (e) {
     res.status(400).send(e);

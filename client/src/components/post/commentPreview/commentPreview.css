@@ -1,6 +1,26 @@
 #commentPreview {
-  padding: 0px 16px 0px 16px;
+  padding: 0px 0px 0px 16px;
+}
 
+#commentPreview-comments {
+  max-height: 200px;
+  overflow  : auto;
+}
+
+#commentPreview-comments ::-webkit-scrollbar {
+  width: 5px;
+}
+
+#commentPreview-comments ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#commentPreview-comments ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#commentPreview-comments ::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .commentPreview-comment {
@@ -12,6 +32,13 @@
   word-wrap     : break-word;
   word-break    : break-all;
   white-space   : normal;
+  display       : flex;
+  align-items   : center;
+  padding-right : 10px;
+}
+
+.comment-preview-comment-delete {
+  margin: auto 0 auto auto;
 }
 
 .commentPreview-timePosted {

@@ -6,13 +6,13 @@ import ActionBar from "./../post/actionBar/actionbar";
 import Likes from "./../post/likes/likes";
 import PostPicture from "./../post/postPicture/postPicture";
 import CommentPostbox from "./../post/commentPostbox/commentPostbox";
-import { TurnedIn } from "@material-ui/icons";
+import CloseIcon from '@material-ui/icons/Close';
 
 function PostPopup({ id, auth, setPostPopupJSX }) {
   const [post, setPost] = useState();
   const [postPic, setPostPic] = useState();
 
-
+  // fetch the post
   useEffect(() => {
     (async () => {
       try {
@@ -30,6 +30,28 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
     })();
   }, []);
 
+
+  // handle comment delete
+  async function handleCommentDelete(comment) {
+    try {
+      await axios({
+        method: "post",
+        url: "http://localhost:3001/comments/delete",
+        data: { comment },
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      });
+      const tempPost = { ...post }
+      tempPost.comments = tempPost.comments.filter((item) => {
+        return (item._id !== comment._id)
+      })
+      console.log(tempPost)
+      setPost(tempPost)
+    } catch {
+
+    }
+  }
   return (
     <div className="post-popup-container" onClick={() => {
       setPostPopupJSX(null)
@@ -53,7 +75,14 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
                         <b>{comment.userName} </b>
                         {comment.text}
                       </div>
+                      {comment.user === auth._id
+                        ? <CloseIcon
+                          onClick={() => handleCommentDelete(comment)}
+                          className='comment-preview-comment-delete'
+                          style={{ fontSize: 10 }}></CloseIcon>
+                        : null}
                     </div>
+
                   );
                 })}
               </div>

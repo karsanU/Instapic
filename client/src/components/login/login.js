@@ -12,6 +12,7 @@ const disabledButton = {
 function Login({ auth, loginAction }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginFailed, setLoginFailed] = useState("");
 
   // if user is authenticated get directed to feed
   let history = useHistory();
@@ -25,6 +26,11 @@ function Login({ auth, loginAction }) {
       email,
       password,
     });
+    setTimeout(function () {
+      if (auth.loggedIn !== true) {
+        setLoginFailed("loginFailed")
+      }
+    }, 200);
   }
 
   return (
@@ -37,17 +43,21 @@ function Login({ auth, loginAction }) {
           <div className="login-form">
             <form onSubmit={(e) => handleOnsubmit(e)}>
               <input
+                className={loginFailed}
                 value={email}
                 placeholder="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
+                  setLoginFailed("")
                 }}
               />
               <input
+                className={loginFailed}
                 value={password}
                 placeholder="password"
                 type="password"
                 onChange={(e) => {
+                  setLoginFailed("")
                   setPassword(e.target.value);
                 }}
               />
@@ -61,7 +71,7 @@ function Login({ auth, loginAction }) {
                   )
                 }
                 style={
-                  email !== "" && validator.validate(email) && password !== ""
+                  email !== "" && validator.validate(email) && password !== "" && loginFailed === ""
                     ? {}
                     : disabledButton
                 }

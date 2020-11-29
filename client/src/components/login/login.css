@@ -78,3 +78,17 @@
   text-decoration: none;
 
 }
+
+
+
+.loginFailed {
+
+  width        : 250px;
+  height       : 27px;
+  padding      : 7px;
+  font-size    : 15px;
+  color        : #d10505;
+  border       : 2px solid#d10505 !important;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}

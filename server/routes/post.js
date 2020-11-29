@@ -3,6 +3,7 @@ const multer = require("multer");
 const sharp = require("sharp");
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const ObjectID = require('mongodb').ObjectID;
 
 const auth = require("../middleware/auth");
 
@@ -99,7 +100,6 @@ router.post("/posts/unlike", auth, async (req, res) => {
 // add a comment
 router.post("/comment/create", auth, async (req, res) => {
   try {
-    const user = req.user;
     const post = await Post.findOne({ _id: req.body.postId });
     const comment = new Comment({
       text: req.body.comment,
@@ -118,4 +118,27 @@ router.post("/comment/create", auth, async (req, res) => {
 });
 
 // delete a comment
+router.post("/comments/delete", auth, async (req, res) => {
+  try {
+    console.log(req.body.comment)
+    // remove the comment from the post 
+    const post = await Post.findOne({ _id: req.body.comment.post });
+    post.comments = post.comments.filter((comment) => {
+      return String(comment._id) !== String(req.body.comment._id)
+    })
+    await post.save()
+    // remove the comment document 
+    Comment.findByIdAndDelete(req.body.comment._id, function (err) {
+      if (err) console.log(err);
+      console.log("Successful deletion");
+    });
+    res.status(201).send();
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
+
+
 module.exports = router;

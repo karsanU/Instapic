@@ -12,6 +12,6 @@ export default (credentialsInput) => {
       dispatch({ type: "USER_LOGGED_IN", userInfo });
     } catch (err) {
       console.error(err);
-    }
+     }
   };
 };

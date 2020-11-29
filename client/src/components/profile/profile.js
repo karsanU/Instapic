@@ -50,6 +50,7 @@ function Profile({ auth, match }) {
           <>
             <Header user={user} auth={auth} setUser={setUser} />
             <UserContent
+              key={user.posts.length}
               username={username}
               user={user}
               auth={auth}

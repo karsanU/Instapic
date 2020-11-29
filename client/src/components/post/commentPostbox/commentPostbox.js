@@ -36,7 +36,7 @@ function CommentPostbox({ auth, post, setPost }) {
           placeholder="Add a comment..."
           onChange={(e) => setComment(e.target.value)}
         />
-        <input type="submit" id="commentPostbox-submit" value="Post" />
+        <input type="submit" id="commentPostbox-submit" style={comment === '' ? { color: '#8e8e8e' } : null} value="Post" />
       </form>
     </div>
   );

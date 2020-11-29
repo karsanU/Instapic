@@ -43,7 +43,7 @@ export default function SearchBar({ usernames, }) {
                     }
                     setValue('')
                 } else if (typeof newValue === 'object'
-                    && typeof newValue !== 'object') {
+                    && newValue !== null) {
                     history.push(`/user/${newValue.userName}`)
                     setValue('')
                 }
