@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from "react-redux";
-import axios from 'axios'
+import server from './../../api/server'
 import './followButton.css'
 import { updateUser } from "../../actions/user";
 
@@ -40,9 +40,9 @@ function FollowButton({ auth, user, updateUser }) {
     async function handleFollow() {
         setFollowStatus(true);
         try {
-            await axios({
+            await server({
                 method: "post",
-                url: `http://localhost:3001/users/follow`,
+                url: `users/follow`,
                 data: { userName: user.userName },
                 headers: {
                     Authorization: `Bearer ${auth.token}`,
@@ -59,9 +59,9 @@ function FollowButton({ auth, user, updateUser }) {
 
         setFollowStatus(false);
         try {
-            await axios({
+            await server({
                 method: "post",
-                url: `http://localhost:3001/users/unfollow`,
+                url: `users/unfollow`,
                 data: { userName: user.userName },
                 headers: {
                     Authorization: `Bearer ${auth.token}`,

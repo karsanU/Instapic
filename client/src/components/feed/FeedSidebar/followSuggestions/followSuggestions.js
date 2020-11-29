@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import server, { baseURL } from './../../../../api/server'
 import './followSuggestions.css'
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from "react-router-dom";
@@ -13,9 +13,9 @@ function FollowSuggestions({ auth }) {
     useEffect(() => {
         (async () => {
             try {
-                const users = await axios({
+                const users = await server({
                     method: "get",
-                    url: `http://localhost:3001/users/recent_signup`,
+                    url: `users/recent_signup`,
                     headers: {
                         Authorization: `Bearer ${auth.token}`,
                     },
@@ -28,7 +28,7 @@ function FollowSuggestions({ auth }) {
                             <IconButton size="small" >
                                 {user.hasAvatar ?
                                     <img id="followSuggestions-profiles-picture"
-                                        src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}`}
+                                        src={`${baseURL}users/avatar/${user._id}/${new Date().getTime()}`}
                                         alt="suggested profile"
                                     ></img>
                                     : <Avatar id='followSuggestions-profiles-avatar' />

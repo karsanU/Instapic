@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import server from './../../../api/server'
 import "./postPicture.css";
 import loading from "./../../icons/loading.svg";
 function PostPicture({ postPopUp, auth, id }) {
@@ -7,9 +7,9 @@ function PostPicture({ postPopUp, auth, id }) {
   useEffect(() => {
     if (auth !== undefined) {
       (async function () {
-        const res = await axios({
+        const res = await server({
           method: "get",
-          url: `http://localhost:3001/posts/picture/${id}`,
+          url: `posts/picture/${id}`,
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },

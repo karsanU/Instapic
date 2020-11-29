@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import server from './../../../api/server'
 import "./actionBar.css";
-import Bookmark from "../../icons/bookmark";
 import Like from "../../icons/like";
 import Liked from "../../icons/liked";
-import Comment from "../../icons/comment";
 
 function ActionBar({ post, auth, setPost }) {
   const [like, setLike] = useState(post.likes.includes(auth._id));
@@ -15,9 +13,9 @@ function ActionBar({ post, auth, setPost }) {
     setLike(true);
     setPost(postCopy);
     try {
-      await axios({
+      await server({
         method: "post",
-        url: `http://localhost:3001/posts/like`,
+        url: `posts/like`,
         data: { _id: post._id },
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -33,9 +31,9 @@ function ActionBar({ post, auth, setPost }) {
     setLike(false);
     setPost(postCopy);
     try {
-      await axios({
+      await server({
         method: "post",
-        url: `http://localhost:3001/posts/unlike`,
+        url: `posts/unlike`,
         data: { _id: post._id },
         headers: {
           Authorization: `Bearer ${auth.token}`,

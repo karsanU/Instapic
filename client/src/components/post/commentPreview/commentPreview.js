@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./commentPreview.css";
-import axios from 'axios'
+import server from './../../../api/server'
 import CloseIcon from '@material-ui/icons/Close';
 
 function CommentPreview({ postComments, auth, post, setPost }) {
@@ -19,9 +19,9 @@ function CommentPreview({ postComments, auth, post, setPost }) {
   // handle comment delete
   async function handleCommentDelete(comment) {
     try {
-      await axios({
+      await server({
         method: "post",
-        url: "http://localhost:3001/comments/delete",
+        url: "comments/delete",
         data: { comment },
         headers: {
           Authorization: `Bearer ${auth.token}`,

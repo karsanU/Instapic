@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./profile.css";
 import Header from "./header/header";
 import UserContent from "./user-content/userContent";
-import axios from "axios";
+import server from './../../api/server'
 
 function Profile({ auth, match }) {
   const history = useHistory();
@@ -26,9 +26,9 @@ function Profile({ auth, match }) {
     (async () => {
       console.log("getting the user");
       try {
-        const res = await axios({
+        const res = await server({
           method: "get",
-          url: `http://localhost:3001/users/fetch/${username}`,
+          url: `users/fetch/${username}`,
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },

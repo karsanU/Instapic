@@ -1,5 +1,4 @@
 import server from "./../api/server";
-import axios from "axios";
 
 export const fetchPost = (postId) => {
   return {
@@ -28,9 +27,9 @@ export const createPost = (image, token) => {
       const form = new FormData();
       // we append each element to the form
       form.append("image", image);
-      await axios({
+      await server({
         method: "post",
-        url: "http://localhost:3001/posts/create",
+        url: "posts/create",
         data: form,
         headers: {
           "Content-Type": "multipart/form-data",

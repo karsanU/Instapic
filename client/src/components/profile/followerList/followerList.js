@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import server, { baseURL } from './../../../api/server'
 import "./followerList.css";
 import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
@@ -11,9 +11,9 @@ function FollowerList({ auth, user, type, setFollowerList }) {
     // fetch a fans info 
     async function fetchFan(fan_id) {
         try {
-            const fan = await axios({
+            const fan = await server({
                 method: "get",
-                url: `http://localhost:3001/users/fetch/basic/${fan_id}`,
+                url: `users/fetch/basic/${fan_id}`,
             });
             return fan
         } catch (err) {
@@ -31,7 +31,7 @@ function FollowerList({ auth, user, type, setFollowerList }) {
                             <IconButton size="small">
                                 {fan.hasAvatar ?
                                     <img className="follow-list-profile-fan"
-                                        src={`http://localhost:3001/users/avatar/${fan_id}/${new Date().getTime()}`}
+                                        src={`${baseURL}users/avatar/${fan_id}/${new Date().getTime()}`}
                                         alt="feed-follow-list-profile-img"
                                     ></img>
                                     : <Avatar id="follow-list-profile-fan-default" />

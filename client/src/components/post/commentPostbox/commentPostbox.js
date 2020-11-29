@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import server from './../../../api/server'
 import "./commentPostbox.css";
 
 function CommentPostbox({ auth, post, setPost }) {
@@ -9,9 +9,9 @@ function CommentPostbox({ auth, post, setPost }) {
 
     if (comment !== "") {
       setComment("");
-      const res = await axios({
+      const res = await server({
         method: "post",
-        url: "http://localhost:3001/comment/create",
+        url: "comment/create",
         data: { comment, postId: post._id },
         headers: {
           Authorization: `Bearer ${auth.token}`,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import server from './../../api/server'
 import PostHeader from "./postHeader/postHeader";
 import PostPicture from "./postPicture/postPicture";
 import ActionBar from "./actionBar/actionbar";
@@ -15,9 +15,9 @@ const Post = ({ id, auth }) => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios({
+        const res = await server({
           method: "get",
-          url: `http://localhost:3001/posts/${id}`,
+          url: `posts/${id}`,
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
@@ -32,7 +32,7 @@ const Post = ({ id, auth }) => {
     <>
       {post !== null ? (
         <div id="post">
-          <PostHeader post={post} />
+          <PostHeader post={post} auth={auth} />
           <PostPicture auth={auth} id={id} />
           <div className="post-like-container">
             <ActionBar post={post} auth={auth} setPost={setPost} />

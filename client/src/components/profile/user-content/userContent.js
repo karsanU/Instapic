@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostPopup from './../../postPopup/postPopup'
-import axios from "axios";
+import server from '../../../api/server'
 import "./userContent.css";
 function UserContent({ user, auth }) {
   const [photoJsx, setPhotoJsx] = useState([]);
@@ -15,9 +15,9 @@ function UserContent({ user, auth }) {
   // get all the photos rendered
   async function getPicture(id) {
     try {
-      const res = await axios({
+      const res = await server({
         method: "get",
-        url: `http://localhost:3001/posts/picture/${id}`,
+        url: `posts/picture/${id}`,
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },

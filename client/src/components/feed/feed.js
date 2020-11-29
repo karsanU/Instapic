@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import server from './../../api/server'
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Post from "../post/post";
@@ -16,15 +16,15 @@ function Feed({ auth }) {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios({
+        const res = await server({
           method: "get",
-          url: `http://localhost:3001/users/feed`,
+          url: `users/feed`,
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
         });
         setPosts(res.data);
-      } catch (err) {}
+      } catch (err) { }
     })();
   }, [auth.token, auth.posts.length]);
 
@@ -34,8 +34,8 @@ function Feed({ auth }) {
       <div id="listOfPosts">
         {posts !== null
           ? posts.map((post) => (
-              <Post key={post._id} id={post._id} auth={auth}></Post>
-            ))
+            <Post key={post._id} id={post._id} auth={auth}></Post>
+          ))
           : null}
       </div>
       <FeedSidebar />

@@ -1,10 +1,10 @@
-import axios from 'axios';
+import server from './../api/server';
 export function updateUser(auth) {
   return async function (dispatch, getState) {
     try {
-      const res = await axios({
+      const res = await server({
         method: "get",
-        url: `http://localhost:3001/users/updatedUser`,
+        url: `users/updatedUser`,
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },

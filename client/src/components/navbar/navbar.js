@@ -10,7 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { createPost } from "./../../actions/post";
 import IconButton from "@material-ui/core/IconButton";
 import SearchBar from './../searchBar/SearchBar'
-import axios from 'axios'
+import server, { baseURL } from './../../api/server'
 import "./navbar.css";
 
 // testing commit
@@ -38,9 +38,9 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
   useEffect(() => {
     (async () => {
       try {
-        let usernamesTemp = await axios({
+        let usernamesTemp = await server({
           method: "get",
-          url: `http://localhost:3001/users/usernames`,
+          url: `users/usernames`,
         });
         console.log(usernamesTemp.data)
         setUsernames(usernamesTemp.data)
@@ -137,7 +137,7 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
             {auth.hasAvatar ?
               // eslint-disable-next-line jsx-a11y/alt-text
               <img className="navbar-profile-picture"
-                src={`http://localhost:3001/users/avatar/${auth._id}/${new Date().getTime()}`}
+                src={`${baseURL}users/avatar/${auth._id}/${new Date().getTime()}`}
               ></img>
               : <Avatar
                 id="navbar-profile-icon"

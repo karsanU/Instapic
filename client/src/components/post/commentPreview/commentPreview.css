@@ -7,19 +7,19 @@
   overflow  : auto;
 }
 
-#commentPreview-comments ::-webkit-scrollbar {
+#commentPreview-comments::-webkit-scrollbar {
   width: 5px;
 }
 
-#commentPreview-comments ::-webkit-scrollbar-thumb {
-  background: #888;
+::-webkit-scrollbar-thumb {
+  background: #A8A8A8;
 }
 
-#commentPreview-comments ::-webkit-scrollbar-thumb {
-  background: #888;
+::-webkit-scrollbar-thumb {
+  background: #A8A8A8;
 }
 
-#commentPreview-comments ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
@@ -34,7 +34,7 @@
   white-space   : normal;
   display       : flex;
   align-items   : center;
-  padding-right : 10px;
+  padding-right: 10px;
 }
 
 .comment-preview-comment-delete {

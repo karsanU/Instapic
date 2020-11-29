@@ -3,7 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import FollowerList from './../followerList/followerList'
 import "./header.css";
-import axios from "axios";
+import server, { baseURL } from './../../../api/server'
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { updateUser } from "../../../actions/user";
@@ -34,9 +34,9 @@ function Header({ user = {}, auth, updateUser, setUser }) {
       const form = new FormData();
       // we append each element to the form
       form.append("image", avatar);
-      await axios({
+      await server({
         method: "post",
-        url: `http://localhost:3001/users/avatar`,
+        url: `users/avatar`,
         data: form,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -57,7 +57,7 @@ function Header({ user = {}, auth, updateUser, setUser }) {
         return <>
           { // eslint-disable-next-line jsx-a11y/alt-text
             <img
-              src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}}`}
+              src={`${baseURL}users/avatar/${user._id}/${new Date().getTime()}}`}
             ></img>
           }
         </>
@@ -86,12 +86,12 @@ function Header({ user = {}, auth, updateUser, setUser }) {
                 (profileAvatarChange) ?
                   // eslint-disable-next-line jsx-a11y/alt-text
                   <img key={profileAvatarChange}
-                    src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}`}
+                    src={`${baseURL}users/avatar/${user._id}/${new Date().getTime()}`}
                   ></img> :
                   (user.hasAvatar) ?
                     // eslint-disable-next-line jsx-a11y/alt-text
                     <img
-                      src={`http://localhost:3001/users/avatar/${user._id}/${new Date().getTime()}`}
+                      src={`${baseURL}users/avatar/${user._id}/${new Date().getTime()}`}
                     ></img> :
                     <Avatar id="profile-header-avatar" />
               }

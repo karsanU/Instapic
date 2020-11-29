@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import server from './../../api/server'
 import "./postPopup.css";
 import PostHeader from "./../post/postHeader/postHeader";
 import ActionBar from "./../post/actionBar/actionbar";
@@ -16,9 +16,9 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios({
+        const res = await server({
           method: "get",
-          url: `http://localhost:3001/posts/${id}`,
+          url: `posts/${id}`,
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
@@ -34,9 +34,9 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
   // handle comment delete
   async function handleCommentDelete(comment) {
     try {
-      await axios({
+      await server({
         method: "post",
-        url: "http://localhost:3001/comments/delete",
+        url: "comments/delete",
         data: { comment },
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -66,7 +66,7 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
           </div>
           <div className="post-popup-post-rest">
             <>
-              <PostHeader post={post} />
+              <PostHeader post={post} auth={auth} />
               <div className="post-popup-post-rest-comments">
                 {post.comments.map((comment) => {
                   return (
