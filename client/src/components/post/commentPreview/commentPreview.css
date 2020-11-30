@@ -34,7 +34,7 @@
   white-space   : normal;
   display       : flex;
   align-items   : center;
-  padding-right: 10px;
+  padding-right : 10px;
 }
 
 .comment-preview-comment-delete {

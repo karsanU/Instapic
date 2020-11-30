@@ -13,7 +13,6 @@ const postSchema = Schema({
   picture: {
     type: Buffer,
   },
-  time: { type: Date, default: Date.now },
   likes: { type: [{ type: Schema.Types.ObjectId, ref: "User" }] },
   comments: {
     type: [{ type: Schema.Types.ObjectId, ref: "Comment" }]

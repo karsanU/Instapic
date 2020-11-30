@@ -11,7 +11,6 @@ function convertDate(date) {
   const diffDays = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) - 1;
   console.log(diffTime + " milliseconds");
   console.log(diffDays + " days");
-
   if (diffDays === 0) {
     return 'today'
   } else if (diffDays === 1) {
@@ -28,7 +27,6 @@ function convertDate(date) {
     if (Math.floor(diffDays / 364) === 1) { return '1 year ago' }
     return Math.floor(diffDays / 364) + ' years ago'
   }
-
 }
 
 

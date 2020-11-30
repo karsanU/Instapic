@@ -3,7 +3,6 @@ const multer = require("multer");
 const sharp = require("sharp");
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-const ObjectID = require('mongodb').ObjectID;
 
 const auth = require("../middleware/auth");
 
@@ -59,8 +58,9 @@ router.post(
     })
     // remove the post from user 
     req.user.posts = req.user.posts.filter((post) => {
-      post !== post._id
+      return (String(post) !== String(req.body._id))
     })
+
     await req.user.save()
     // remove the post
     Post.findByIdAndDelete(req.body._id, function (err) {

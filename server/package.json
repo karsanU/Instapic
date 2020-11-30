@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": " nodemon app.js  /Users/karsa/mongodb/bin/mongod.exe --dbpath=/Users/karsa/mongodb-data",
+    "dev": "env-cmd -f ./config/dev.env nodemon app.js",
     "db": "/Users/karsa/mongodb/bin/mongod.exe --dbpath=/Users/karsa/mongodb-data"
   },
   "keywords": [],
@@ -20,5 +20,8 @@
     "nodemon": "^2.0.6",
     "sharp": "^0.26.1",
     "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }

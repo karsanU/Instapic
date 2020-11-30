@@ -1,11 +1,11 @@
 // create server
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // setup database
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/InstaPic-dev-db", {
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
