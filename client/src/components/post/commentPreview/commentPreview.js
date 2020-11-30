@@ -3,6 +3,34 @@ import { Link } from "react-router-dom";
 import "./commentPreview.css";
 import server from './../../../api/server'
 import CloseIcon from '@material-ui/icons/Close';
+import { Today } from "@material-ui/icons";
+
+// convert date in to days, weeks, month or year 
+function convertDate(date) {
+  const diffTime = Math.abs(Date.now() - new Date(date));
+  const diffDays = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) - 1;
+  console.log(diffTime + " milliseconds");
+  console.log(diffDays + " days");
+
+  if (diffDays === 0) {
+    return 'today'
+  } else if (diffDays === 1) {
+    return 'yesterday'
+  } else if (diffDays < 7) {
+    return diffDays + ' days ago'
+  } else if (diffDays >= 7 && diffDays < 30) {
+    if (Math.floor(diffDays / 7) === 1) { return '1 week ago' }
+    return Math.floor(diffDays / 7) + ' weeks ago'
+  } else if (diffDays >= 30 && diffDays < 364) {
+    if (Math.floor(diffDays / 30) === 1) { return '1 month ago' }
+    return Math.floor(diffDays / 30) + ' months ago'
+  } else {
+    if (Math.floor(diffDays / 364) === 1) { return '1 year ago' }
+    return Math.floor(diffDays / 364) + ' years ago'
+  }
+
+}
+
 
 function CommentPreview({ postComments, auth, post, setPost }) {
   const [comments, setComments] = useState(
@@ -10,7 +38,7 @@ function CommentPreview({ postComments, auth, post, setPost }) {
   );
 
   useEffect(() => {
-    // logic of expanding to see all comments 
+    // logic of expanding to see all comments and updating upon comment change
     if (comments.length < 6) {
       setComments(postComments.slice(Math.max(postComments.length - 5, 0)));
     }
@@ -92,7 +120,7 @@ function CommentPreview({ postComments, auth, post, setPost }) {
       </div>
 
       <div className="commentPreview-comment  commentPreview-timePosted">
-        <span>4 DAYS AGO</span>
+        <span>{convertDate(post.time)}</span>
       </div>
     </div>
   );
