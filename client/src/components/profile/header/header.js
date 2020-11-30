@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import FollowerList from './../followerList/followerList'
@@ -12,8 +12,6 @@ import FollowButton from './../../followButton/FollowButton'
 function Header({ user = {}, auth, updateUser, setUser }) {
   const [profileAvatarChange, setProfileAvatarChange] = useState(0)
   const [followerList, setFollowerList] = useState();
-
-
 
   // upload button style
   const useStyles = makeStyles((theme) => ({

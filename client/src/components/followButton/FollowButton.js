@@ -3,18 +3,38 @@ import { connect } from "react-redux";
 import server from './../../api/server'
 import './followButton.css'
 import { updateUser } from "../../actions/user";
+import loadingSmall from "./../icons/loading-small.svg";
 
-function FollowButton({ auth, user, updateUser }) {
+
+function FollowButton({ auth, user, updateUser, setUser }) {
     const [followStatus, setFollowStatus] = useState(
         user.followers.includes(auth._id)
     );
-
+    const [loading, setLoading] = useState(false);
+    const loadingBackground = {
+        backgroundImage: `url(${loadingSmall}) `,
+        backgroundRepeat: ' no-repeat',
+        backgroundSize: '28px 28px',
+        backgroundPosition: 'left -2px top 0px'
+    }
     // follow button render logic
     const button = (() => {
+
         if (auth.userName !== user.userName) {
+            if (followStatus === "loading") {
+                return (
+                    <button
+                        className="profile-header-user-follow pointer"
+                        onClick={() => handleFollow()}
+                    >
+                        follow
+                    </button>
+                );
+            }
             if (!followStatus) {
                 return (
                     <button
+                        style={loading ? loadingBackground : null}
                         className="profile-header-user-follow pointer"
                         onClick={() => handleFollow()}
                     >
@@ -24,6 +44,7 @@ function FollowButton({ auth, user, updateUser }) {
             } else {
                 return (
                     <button
+                        style={loading ? loadingBackground : null}
                         className="profile-header-user-un-follow pointer"
                         onClick={() => handleUnfollow()}
                     >
@@ -38,7 +59,7 @@ function FollowButton({ auth, user, updateUser }) {
 
     // handle follow
     async function handleFollow() {
-        setFollowStatus(true);
+        setLoading(true)
         try {
             await server({
                 method: "post",
@@ -53,11 +74,13 @@ function FollowButton({ auth, user, updateUser }) {
             console.error(err);
         }
         updateUser(auth)
+        setLoading(false)
+        setFollowStatus(true);
+
     }
     // handle Unfollow
     async function handleUnfollow() {
-
-        setFollowStatus(false);
+        setLoading(true)
         try {
             await server({
                 method: "post",
@@ -72,6 +95,8 @@ function FollowButton({ auth, user, updateUser }) {
             console.error(err);
         }
         updateUser(auth)
+        setLoading(false)
+        setFollowStatus(false);
     }
     return (
         <>

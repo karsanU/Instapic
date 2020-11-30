@@ -23,11 +23,7 @@ function PostPicture({ postPopUp, auth, id }) {
   }, []);
   return (
     <div id={postPopUp ? "post-picture-popup" : "post-picture"}>
-      {postPopUp
-        ?
-        <img src={image} alt="user's post"></img>
-        :
-        <img src={image || loading} alt="user's post"></img>}
+      <img src={image || loading} alt="user's post"></img>
     </div>
   );
 }

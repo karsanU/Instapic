@@ -32,7 +32,7 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
   async function handleImageUpload(image) {
     await createPost(image, auth.token);
     alert("image uploaded");
-    await updateUser(auth);
+    updateUser(auth);
   }
 
   useEffect(() => {
