@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./commentPreview.css";
 import server from './../../../api/server'
 import CloseIcon from '@material-ui/icons/Close';
-import { Today } from "@material-ui/icons";
 
 // convert date in to days, weeks, month or year 
 function convertDate(date) {
