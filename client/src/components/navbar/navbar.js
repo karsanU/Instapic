@@ -30,9 +30,13 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
   }
   // handle image upload
   async function handleImageUpload(image) {
-    await createPost(image, auth.token);
-    alert("image uploaded");
-    updateUser(auth);
+    try {
+      await createPost(image, auth.token);
+      alert("image uploaded");
+      updateUser(auth);
+    } catch {
+      alert("Image must be jpg,jpeg or png, as well as less than 5MB.");
+    }
   }
 
   useEffect(() => {

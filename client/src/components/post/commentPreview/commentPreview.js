@@ -105,7 +105,7 @@ function CommentPreview({ postComments, auth, post, setPost }) {
               {comment.user === auth._id
                 ? <CloseIcon
                   onClick={() => handleCommentDelete(comment)}
-                  className='comment-preview-comment-delete'
+                  className='comment-preview-comment-delete pointer'
                   style={{ fontSize: 10 }}></CloseIcon>
                 : null}
             </div>

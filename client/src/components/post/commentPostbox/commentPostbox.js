@@ -24,18 +24,18 @@ function CommentPostbox({ auth, post, setPost }) {
   }
 
   return (
-    <div id="commentPostbox">
-      <form id="commentPostbox-form" onSubmit={(e) => handleCommentInput(e)}>
+    <div className="commentPostbox">
+      <form className="commentPostbox-form" onSubmit={(e) => handleCommentInput(e)}>
         <input
           autoComplete="off"
           value={comment}
           type="text"
-          id="commentPostbox-input"
+          className="commentPostbox-input"
           name="fname"
           placeholder="Add a comment..."
           onChange={(e) => setComment(e.target.value)}
         />
-        <input type="submit" id="commentPostbox-submit" style={comment === '' ? { color: '#8e8e8e' } : null} value="Post" />
+        <input type="submit" className="commentPostbox-submit" style={comment === '' ? { color: '#8e8e8e' } : null} value="Post" />
       </form>
     </div>
   );

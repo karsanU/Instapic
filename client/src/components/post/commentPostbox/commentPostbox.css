@@ -1,4 +1,4 @@
-#commentPostbox {
+.commentPostbox {
   border-top: 1px solid var(--border-color);
   width: 100%;
   height: 54px;
@@ -11,7 +11,7 @@
   justify-content: start;
 }
 
-#commentPostbox-form {
+.commentPostbox-form {
   display: flex;
   align-items: center;
   justify-content: start;
@@ -19,14 +19,14 @@
   width: 100%;
 }
 
-#commentPostbox-input {
+.commentPostbox-input {
   height: 52px;
   border: none;
   padding-left: 16px;
   width: 100%;
 }
 
-#commentPostbox-submit {
+.commentPostbox-submit {
   border: none;
   height: 52px;
   background: none;

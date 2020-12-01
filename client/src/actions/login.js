@@ -9,7 +9,6 @@ export default (credentialsInput) => {
       delete userInfo['avatar']
       dispatch({ type: "USER_LOGGED_IN", userInfo });
     } catch (err) {
-      console.error(err);
     }
   };
 };

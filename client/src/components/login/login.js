@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import validator from "email-validator";
@@ -23,14 +23,14 @@ function Login({ auth, loginAction }) {
   function handleOnsubmit(e) {
     e.preventDefault();
     loginAction({
-      email,
+      email: email.trim(),
       password,
     });
     setTimeout(function () {
       if (auth.loggedIn !== true) {
         setLoginFailed("loginFailed")
       }
-    }, 200);
+    }, 500);
   }
 
   return (
@@ -71,7 +71,7 @@ function Login({ auth, loginAction }) {
                   )
                 }
                 style={
-                  email !== "" && validator.validate(email) && password !== "" && loginFailed === ""
+                  email !== "" && validator.validate(email.trim()) && password !== "" && loginFailed === ""
                     ? {}
                     : disabledButton
                 }
