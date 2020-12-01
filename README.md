@@ -10,3 +10,6 @@ Fullstack Instagram clone created with the MERN stack.
 * Commeting 
 * Profile picture chnage
 * Search users
+
+!(image)[https://imgur.com/a/xGQgRpw]
+
