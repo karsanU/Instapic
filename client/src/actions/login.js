@@ -5,13 +5,11 @@ export default (credentialsInput) => {
     const credentials = { ...credentialsInput };
     try {
       const response = await server.post("/users/login", credentials);
-      console.log(response);
       const userInfo = response.data.user;
-      console.log(userInfo);
       delete userInfo['avatar']
       dispatch({ type: "USER_LOGGED_IN", userInfo });
     } catch (err) {
       console.error(err);
-     }
+    }
   };
 };

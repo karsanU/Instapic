@@ -20,7 +20,6 @@ function FollowSuggestions({ auth }) {
                         Authorization: `Bearer ${auth.token}`,
                     },
                 });
-                console.log(users)
                 const jsx = []
                 users.data.forEach((user) => {
                     jsx.push(<div key={user._id} id='followSuggestions-profiles'>

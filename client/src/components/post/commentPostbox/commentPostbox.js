@@ -17,7 +17,6 @@ function CommentPostbox({ auth, post, setPost }) {
           Authorization: `Bearer ${auth.token}`,
         },
       });
-      console.log(res);
       const postCopy = { ...post };
       postCopy.comments.push(res.data);
       setPost(postCopy);

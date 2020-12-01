@@ -23,7 +23,6 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
             Authorization: `Bearer ${auth.token}`,
           },
         });
-        console.log(res.data)
         setPostPic(<PostPicture postPopUp={true} auth={auth} id={res.data._id}></PostPicture>)
         setPost(res.data);
       } catch (err) { }
@@ -46,7 +45,6 @@ function PostPopup({ id, auth, setPostPopupJSX }) {
       tempPost.comments = tempPost.comments.filter((item) => {
         return (item._id !== comment._id)
       })
-      console.log(tempPost)
       setPost(tempPost)
     } catch {
 

@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
     "form-data": "^3.0.0",
     "react": "^16.14.0",
@@ -25,6 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "prod": "env-cmd -f ./config/prod.env react-scripts start",
+    "dev": "env-cmd -f ./config/dev.env react-scripts start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }

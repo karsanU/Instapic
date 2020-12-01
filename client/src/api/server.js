@@ -1,6 +1,6 @@
 import axios from "axios";
-export const baseURL = "http://localhost:3001/"
+export const baseURL = 'https://uthaya-insta-backend.herokuapp.com/'
 export default axios.create({
-  baseURL: "http://localhost:3001/",
+  baseURL: 'https://uthaya-insta-backend.herokuapp.com/',
 });
 

@@ -147,6 +147,8 @@ router.post("/users/unfollow", auth, async (req, res) => {
   }
 });
 
+
+
 // get user's feed
 router.get("/users/feed", auth, async (req, res) => {
   try {
@@ -236,6 +238,11 @@ router.get("/users/recent_signup", auth, async (req, res) => {
     console.log(e)
     res.status(400).send(e);
   }
+});
+
+// wake the server for heroku
+router.get("/wake", (req, res) => {
+  res.status(200).send();
 });
 
 module.exports = router;

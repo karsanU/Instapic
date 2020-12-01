@@ -14,8 +14,6 @@ function Profile({ auth, match }) {
   const [user, setUser] = useState({ followers: [], following: [] });
   const [contentNotHere, setContentNotHere] = useState(true);
   const [username, setUsername] = useState(match.params.id);
-
-  console.log(username);
   if (username !== match.params.id) {
     setUsername(match.params.id);
   }
@@ -24,7 +22,6 @@ function Profile({ auth, match }) {
   // get the profile
   useEffect(() => {
     (async () => {
-      console.log("getting the user");
       try {
         const res = await server({
           method: "get",
@@ -33,7 +30,6 @@ function Profile({ auth, match }) {
             Authorization: `Bearer ${auth.token}`,
           },
         });
-        console.log(res.data);
         setUser({ ...res.data });
         setContentNotHere(false)
       } catch (err) {

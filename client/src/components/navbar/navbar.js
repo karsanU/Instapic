@@ -42,7 +42,6 @@ function Navbar({ auth, logoutAction, createPost, updateUser }) {
           method: "get",
           url: `users/usernames`,
         });
-        console.log(usernamesTemp.data)
         setUsernames(usernamesTemp.data)
       } catch (err) {
         console.log(err)

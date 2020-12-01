@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-
 import Navbar from "./navbar/navbar";
 import Feed from ".//feed/feed";
 import Profile from "./profile/profile";

@@ -8,8 +8,6 @@ import CloseIcon from '@material-ui/icons/Close';
 function convertDate(date) {
   const diffTime = Math.abs(Date.now() - new Date(date));
   const diffDays = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) - 1;
-  console.log(diffTime + " milliseconds");
-  console.log(diffDays + " days");
   if (diffDays === 0) {
     return 'today'
   } else if (diffDays === 1) {
@@ -56,7 +54,6 @@ function CommentPreview({ postComments, auth, post, setPost }) {
       tempPost.comments = tempPost.comments.filter((item) => {
         return (item._id !== comment._id)
       })
-      console.log(tempPost)
       setPost(tempPost)
       setComments(tempPost.comments)
     } catch {

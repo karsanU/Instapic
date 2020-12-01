@@ -65,7 +65,6 @@ function Header({ user = {}, auth, updateUser, setUser }) {
       }
       // user is viewing someone own profile 
     } else {
-      console.log(profileAvatarChange, user._id)
       return (
         <>
           <input
