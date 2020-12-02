@@ -1,7 +1,7 @@
 # Instapic
 Fullstack Instagram clone built with the MERN stack. 
 <br/>
-Check out the production site: https://instapic.karsan.dev/feed
+Check out the production site: https://instapic.karsan.dev 
 
 ## Demo
 ![](demo.gif)
