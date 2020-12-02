@@ -2,9 +2,10 @@
 Fullstack Instagram clone created with the MERN stack. 
 
 ## Demo
-Production app: https://instapic.karsan.dev/feed
-![](demo.gif)
+###Production app: https://instapic.karsan.dev/feed
 
+![](demo.gif)
+ 
 
 #### Features:
 * Signup/Login
