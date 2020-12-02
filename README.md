@@ -17,7 +17,7 @@ Check out the production site: https://instapic.karsan.dev/feed
 * Signup/Login
 * Follow/unollow users
 * Uplaod/delete post
-* Post likes 
+* Lkes 
 * Commeting 
 * Profile picture change 
 * Search users
