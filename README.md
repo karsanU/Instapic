@@ -7,11 +7,11 @@ Check out the production site: https://instapic.karsan.dev/feed
 ![](demo.gif)
 
 ## Tech
-Frontend: React
-State management: Redux
-Routing: React Router
-Backend: Express
-Database: MongoDB
+* Frontend: React
+* State management: Redux
+* Routing: React Router
+* Backend: Express
+* Database: MongoDB
 
 ## Features:
 * Signup/Login
